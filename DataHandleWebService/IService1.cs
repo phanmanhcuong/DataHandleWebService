@@ -20,8 +20,17 @@ namespace DataHandleWebService
         CompositeType GetDataUsingDataContract(CompositeType composite);
 
         // TODO: Add your service operations here
+
         [OperationContract]
-        void ExtractDataAndStoreToDB(string data);
+        void ExtractData(string data);
+
+        [OperationContract]
+        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
+        void StoreDataToDB(string imei, string strReceivedTime, string strLon,
+            string strLat, string strSpeed, string strMNC, string strLAC, string strSOS,
+            string strIsStrongboxOpen, string strIsEngineOn, string strIsStoping, string strIsGPSLost,
+            string strTotalImageCam1, string strTotalImageCam2, string strRFID,
+            string strOBD, string strVersion);
     }
 
 

@@ -1,12 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.IO;
 using System.Linq;
-using System.Net;
-using System.Runtime.Serialization;
-using System.ServiceModel;
-using System.ServiceModel.Web;
-using System.Text;
 
 namespace DataHandleWebService
 {
@@ -20,15 +14,13 @@ namespace DataHandleWebService
             StreamReader reader = new StreamReader(data);
             // Read StreamReader data as string
             string postdata = reader.ReadToEnd();
-            ExtractDataAndStoreToDB(postdata);
+            ExtractData(postdata);
             //System.Diagnostics.Debug.WriteLine(postdata);
         }
 
-
-        public void ExtractDataAndStoreToDB(string data)
+        public void ExtractData(string data)
         {
             string[] cmd = data.Split(',');
-
             if (cmd.Length >= 16)
             {
                 string imei = cmd[0].Substring(1);
@@ -50,7 +42,43 @@ namespace DataHandleWebService
                 string strOBD = cmd[15];
 
                 string strVersion = cmd[cmd.Length - 2];
+                StoreDataToDB(imei, strReceivedTime, strLon, strLat, strSpeed, strMNC, strLAC,
+                    strSOS, strIsStrongboxOpen, strIsEngineOn, strIsStoping, strIsGPSLost, strTotalImageCam1,
+                    strTotalImageCam2, strRFID, strOBD, strVersion);
             }
+        }
+
+        public void StoreDataToDB(string imei, string strReceivedTime, string strLon, string strLat, string strSpeed, string strMNC, string strLAC, string strSOS, string strIsStrongboxOpen, string strIsEngineOn, string strIsStoping, string strIsGPSLost, string strTotalImageCam1, string strTotalImageCam2, string strRFID, string strOBD, string strVersion)
+        {
+            DataClassesDataContext db = new DataClassesDataContext();
+            history_record newRecord = new history_record();
+            newRecord.imei = imei;
+            newRecord.receivedTime = strReceivedTime;
+            newRecord.longitude = strLon;
+            newRecord.latitude = strLat;
+            newRecord.speed = strSpeed;
+            newRecord.mnc = strMNC; //cellID: "32CB"
+            newRecord.lac = strLAC; //LacID: "32CB"
+
+            newRecord.sos = strSOS; //co sos
+            newRecord.strong_box_open = strIsStrongboxOpen; //co mo ket: dong/mo
+            newRecord.engine_on = strIsEngineOn; //co dong co bat/tat
+            newRecord.stopping = strIsStoping; //co dung do dung/do
+            newRecord.gps_lost = strIsGPSLost; //co GPS mat/co
+            if(strTotalImageCam1 != null)
+            {
+                newRecord.image_cam1 = strTotalImageCam1;
+            }
+            if (strTotalImageCam1 != null)
+            {
+                newRecord.image_cam2 = strTotalImageCam2;
+            }
+            newRecord.rfid = strRFID;
+            newRecord.obd = strOBD;
+            newRecord.version = strVersion;
+
+            db.history_records.InsertOnSubmit(newRecord);
+            db.SubmitChanges();      
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)

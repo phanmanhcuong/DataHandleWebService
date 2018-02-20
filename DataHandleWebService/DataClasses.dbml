@@ -1,0 +1,45 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="test_device_db" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=ADMIN\SQLEXPRESS;Initial Catalog=test_device_db;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="test_device_dbConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.online_record" Member="online_records">
+    <Type Name="online_record">
+      <Column Name="imei" Type="System.String" DbType="NChar(25) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="receivedTime" Type="System.String" DbType="NChar(25)" CanBeNull="true" />
+      <Column Name="longitude" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="latitude" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="speed" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="mnc" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="lac" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="sos" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="strong_box_open" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="engine_on" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="stopping" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="gps_lost" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="image_cam1" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="image_cam2" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="rfid" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="obd" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="version" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.history_record" Member="history_records">
+    <Type Name="history_record">
+      <Column Name="imei" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="receivedTime" Type="System.String" DbType="NChar(25)" CanBeNull="true" />
+      <Column Name="longitude" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="latitude" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="speed" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="mnc" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="lac" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="sos" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="strong_box_open" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="engine_on" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="stopping" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="gps_lost" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="image_cam1" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="image_cam2" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="rfid" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="obd" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
+      <Column Name="version" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+    </Type>
+  </Table>
+</Database>
