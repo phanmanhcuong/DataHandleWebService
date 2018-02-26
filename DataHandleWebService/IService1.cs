@@ -31,6 +31,14 @@ namespace DataHandleWebService
             string strIsStrongboxOpen, string strIsEngineOn, string strIsStoping, string strIsGPSLost,
             string strTotalImageCam1, string strTotalImageCam2, string strRFID,
             string strOBD, string strVersion);
+
+        [OperationContract]
+        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
+        void WriteDataToLogFile(string dataSplit, string imei, string strReceivedTime, string strLon,
+            string strLat, string strSpeed, string strMNC, string strLAC, string strSOS,
+            string strIsStrongboxOpen, string strIsEngineOn, string strIsStoping, string strIsGPSLost,
+            string strTotalImageCam1, string strTotalImageCam2, string strRFID,
+            string strOBD, string strVersion);
     }
 
 

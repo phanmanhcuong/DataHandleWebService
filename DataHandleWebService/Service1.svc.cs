@@ -20,7 +20,10 @@ namespace DataHandleWebService
 
         public void ExtractData(string data)
         {
-            string[] cmd = data.Split(',');
+            System.Diagnostics.Debug.WriteLine(data);
+            string[] dataSplit = data.Split('?');
+            string[] cmd = dataSplit[1].Split(',');
+            
             if (cmd.Length >= 16)
             {
                 string imei = cmd[0].Substring(1);
@@ -43,6 +46,9 @@ namespace DataHandleWebService
 
                 string strVersion = cmd[cmd.Length - 2];
                 StoreDataToDB(imei, strReceivedTime, strLon, strLat, strSpeed, strMNC, strLAC,
+                    strSOS, strIsStrongboxOpen, strIsEngineOn, strIsStoping, strIsGPSLost, strTotalImageCam1,
+                    strTotalImageCam2, strRFID, strOBD, strVersion);
+                WriteDataToLogFile(dataSplit[0], imei, strReceivedTime, strLon, strLat, strSpeed, strMNC, strLAC,
                     strSOS, strIsStrongboxOpen, strIsEngineOn, strIsStoping, strIsGPSLost, strTotalImageCam1,
                     strTotalImageCam2, strRFID, strOBD, strVersion);
             }
@@ -79,6 +85,37 @@ namespace DataHandleWebService
 
             db.history_records.InsertOnSubmit(newRecord);
             db.SubmitChanges();      
+        }
+
+
+        public void WriteDataToLogFile(string firstLine, string imei, string strReceivedTime, 
+            string strLon, string strLat, string strSpeed, string strMNC, string strLAC, 
+            string strSOS, string strIsStrongboxOpen, string strIsEngineOn, string strIsStoping, 
+            string strIsGPSLost, string strTotalImageCam1, string strTotalImageCam2, 
+            string strRFID, string strOBD, string strVersion)
+        {
+            string filePath = "C:\\Users\\Admin\\DevicesLogFilesReal\\" + imei + ".txt";
+            if (File.Exists(filePath))
+            {
+                //delete file if file size > 20 Mb
+                long size = new FileInfo(filePath).Length;
+                if(size > 1048576)
+                {
+                    File.Delete(filePath);
+                }
+                else
+                {
+                    StreamWriter streamFile = new StreamWriter(filePath, append: true);
+                    streamFile.WriteLine(firstLine);
+                    string deviceInformation = imei + "," + strReceivedTime + "," + strLon +
+                        "," + strLat + "," + strSpeed + "," + strMNC + "," + strLAC + "," + strSOS +
+                        "," + strIsStrongboxOpen + "," + strIsEngineOn + "," + strIsStoping + "," +
+                        strIsGPSLost + "," + strTotalImageCam1 + "," + strTotalImageCam2 + "," + strRFID +
+                        "," + strOBD + "," + strVersion;
+                    streamFile.WriteLine(deviceInformation);
+                    streamFile.Close();
+                }
+            }          
         }
 
         public CompositeType GetDataUsingDataContract(CompositeType composite)
