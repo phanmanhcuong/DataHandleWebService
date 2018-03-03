@@ -372,7 +372,7 @@ namespace DataHandleWebService
                     newRecord.timeout = 120; //2 phut
 
                     newRecord.id_lai_xe = driverID;
-                    //newRecord.id_chuhang = moneyOwnerID;
+                    //newRecord.id_chuhang = moneyOwnerID;đas
 
                     newRecord.thoi_diem_nhan_tin = localTime;
                     newRecord.phienban = strVersion;
