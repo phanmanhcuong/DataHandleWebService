@@ -24,21 +24,32 @@ namespace DataHandleWebService
         [OperationContract]
         void ExtractData(string data);
 
-        [OperationContract]
-        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
-        void StoreDataToDB(string imei, string strReceivedTime, string strLon,
-            string strLat, string strSpeed, string strMNC, string strLAC, string strSOS,
-            string strIsStrongboxOpen, string strIsEngineOn, string strIsStoping, string strIsGPSLost,
-            string strTotalImageCam1, string strTotalImageCam2, string strRFID,
-            string strOBD, string strVersion);
+        //[OperationContract]
+        //[WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
+        //void StoreDataToDBHistory(DataClassesDataContext db, int carID, int driverID,
+        //    DateTime receivedTime, double longi, double lati, short gpsSpeed, int SPD, int cellId,
+        //    int lacID, bool sos, bool isStrongboxOpen, bool isEngineOn, short carStatus, byte isGSPLost,
+        //    string strRFID, int ENL, int COT, int RPM, int INTemp, int DIS, int MAF, double oriLati,
+        //    double oriLongi, string cam1ImgPath, string cam2ImgPath);
 
-        [OperationContract]
-        [WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
-        void WriteDataToLogFile(string dataSplit, string imei, string strReceivedTime, string strLon,
-            string strLat, string strSpeed, string strMNC, string strLAC, string strSOS,
-            string strIsStrongboxOpen, string strIsEngineOn, string strIsStoping, string strIsGPSLost,
-            string strTotalImageCam1, string strTotalImageCam2, string strRFID,
-            string strOBD, string strVersion);
+        //[OperationContract]
+        //[WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
+        //void StoreDataToDBOnlineRecord(DataClassesDataContext db, int carID, int driverID,
+        //    DateTime receivedTime, double longi, double lati, short gpsSpeed, int SPD, int cellId,
+        //    int lacID, bool sos, bool isStrongboxOpen, bool isEngineOn, short carStatus, byte isGPSLost,
+        //    string strRFID, int ENL, int COT, int RPM, int INTemp, int DIS, int MAF, string strVersion);
+
+        //[OperationContract]
+        //[WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
+        //double DistanceGpsCalculate(double lat1, double lon1, double lat2, double lon2, char unit);
+
+        //[OperationContract]
+        //[WebInvoke(BodyStyle = WebMessageBodyStyle.Wrapped)]
+        //void WriteDataToLogFile(string dataSplit, int imei, DateTime strReceivedTime, double strLon,
+        //    double strLat, int strSpeed, int cellID, int lacID, bool sos,
+        //    bool isStrongBoxOpen, bool isEngineOn, bool isStoping, byte isGPSLost,
+        //    string strTotalImageCam1, string strTotalImageCam2, string strRFID,
+        //    string strOBD, string strVersion);
     }
 
 

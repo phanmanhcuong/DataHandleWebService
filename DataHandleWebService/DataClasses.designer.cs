@@ -30,12 +30,18 @@ namespace DataHandleWebService
 		
     #region Extensibility Method Definitions
     partial void OnCreated();
-    partial void Insertonline_record(online_record instance);
-    partial void Updateonline_record(online_record instance);
-    partial void Deleteonline_record(online_record instance);
     partial void Inserthistory_record(history_record instance);
     partial void Updatehistory_record(history_record instance);
     partial void Deletehistory_record(history_record instance);
+    partial void Insertonline_record(online_record instance);
+    partial void Updateonline_record(online_record instance);
+    partial void Deleteonline_record(online_record instance);
+    partial void Insertdevice(device instance);
+    partial void Updatedevice(device instance);
+    partial void Deletedevice(device instance);
+    partial void InsertCar(Car instance);
+    partial void UpdateCar(Car instance);
+    partial void DeleteCar(Car instance);
     #endregion
 		
 		public DataClassesDataContext() : 
@@ -68,6 +74,14 @@ namespace DataHandleWebService
 			OnCreated();
 		}
 		
+		public System.Data.Linq.Table<history_record> history_records
+		{
+			get
+			{
+				return this.GetTable<history_record>();
+			}
+		}
+		
 		public System.Data.Linq.Table<online_record> online_records
 		{
 			get
@@ -76,222 +90,226 @@ namespace DataHandleWebService
 			}
 		}
 		
-		public System.Data.Linq.Table<history_record> history_records
+		public System.Data.Linq.Table<device> devices
 		{
 			get
 			{
-				return this.GetTable<history_record>();
+				return this.GetTable<device>();
+			}
+		}
+		
+		public System.Data.Linq.Table<Car> Cars
+		{
+			get
+			{
+				return this.GetTable<Car>();
 			}
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.online_record")]
-	public partial class online_record : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.history_record")]
+	public partial class history_record : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _imei;
+		private System.Nullable<int> _lac;
 		
-		private string _receivedTime;
+		private System.Nullable<bool> _sos;
 		
-		private string _longitude;
+		private System.Nullable<long> _trang_thai_chinh;
 		
-		private string _latitude;
+		private System.Nullable<long> _trang_thai_mo_rong;
 		
-		private string _speed;
+		private System.Nullable<byte> _trang_thai_hopden;
 		
-		private string _mnc;
+		private System.Nullable<bool> _mo_cua;
 		
-		private string _lac;
+		private System.Nullable<bool> _dong_co;
 		
-		private string _sos;
+		private System.Nullable<bool> _dieu_hoa;
 		
-		private string _strong_box_open;
+		private System.Nullable<byte> _vuot_toc;
 		
-		private string _engine_on;
+		private System.Nullable<bool> _flash;
 		
-		private string _stopping;
+		private System.Nullable<bool> _sd_card;
 		
-		private string _gps_lost;
+		private System.Nullable<int> _muc_acquy;
 		
-		private string _image_cam1;
+		private System.Nullable<byte> _muc_nhien_lieu;
 		
-		private string _image_cam2;
+		private System.Nullable<short> _timeout;
 		
-		private string _rfid;
+		private System.Nullable<byte> _van_toc_co;
 		
-		private string _obd;
+		private System.Nullable<byte> _van_toc_gps;
 		
-		private string _version;
+		private System.Nullable<int> _id_lai_xe;
+		
+		private string _sim;
+		
+		private System.DateTime _thoi_diem;
+		
+		private System.Nullable<int> _lai_xe_lien_tuc;
+		
+		private System.Nullable<int> _lai_xe_trong_ngay;
+		
+		private System.Nullable<double> _quang_duong_lien_tuc;
+		
+		private System.Nullable<double> _quang_duong_trong_ngay;
+		
+		private System.Nullable<int> _lan_vuot_toc;
+		
+		private System.Nullable<int> _lan_mo_cua;
+		
+		private System.Nullable<int> _lan_do_xe;
+		
+		private System.Data.Linq.Binary _bonus_data;
+		
+		private System.Nullable<double> _lati;
+		
+		private System.Nullable<double> _longi;
+		
+		private System.Nullable<double> _quang_duong_lien_tuc_gps;
+		
+		private System.Nullable<double> _quang_duong_trong_ngay_gps;
+		
+		private string _van_toc_tuc_thoi;
+		
+		private System.Nullable<int> _ENL;
+		
+		private System.Nullable<int> _COT;
+		
+		private System.Nullable<int> _RPM;
+		
+		private System.Nullable<int> _INTemp;
+		
+		private System.Nullable<int> _DIS;
+		
+		private string _cam1_img_path;
+		
+		private string _cam2_img_path;
+		
+		private string _RFIDString;
+		
+		private System.Nullable<int> _PRESS;
+		
+		private System.Nullable<int> _int_chuhang;
+		
+		private int _id_vi_tri;
+		
+		private int _id_xe;
+		
+		private System.Nullable<byte> _trang_thai_xe;
+		
+		private System.Nullable<int> _cellid;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnimeiChanging(string value);
-    partial void OnimeiChanged();
-    partial void OnreceivedTimeChanging(string value);
-    partial void OnreceivedTimeChanged();
-    partial void OnlongitudeChanging(string value);
-    partial void OnlongitudeChanged();
-    partial void OnlatitudeChanging(string value);
-    partial void OnlatitudeChanged();
-    partial void OnspeedChanging(string value);
-    partial void OnspeedChanged();
-    partial void OnmncChanging(string value);
-    partial void OnmncChanged();
-    partial void OnlacChanging(string value);
+    partial void OnlacChanging(System.Nullable<int> value);
     partial void OnlacChanged();
-    partial void OnsosChanging(string value);
+    partial void OnsosChanging(System.Nullable<bool> value);
     partial void OnsosChanged();
-    partial void Onstrong_box_openChanging(string value);
-    partial void Onstrong_box_openChanged();
-    partial void Onengine_onChanging(string value);
-    partial void Onengine_onChanged();
-    partial void OnstoppingChanging(string value);
-    partial void OnstoppingChanged();
-    partial void Ongps_lostChanging(string value);
-    partial void Ongps_lostChanged();
-    partial void Onimage_cam1Changing(string value);
-    partial void Onimage_cam1Changed();
-    partial void Onimage_cam2Changing(string value);
-    partial void Onimage_cam2Changed();
-    partial void OnrfidChanging(string value);
-    partial void OnrfidChanged();
-    partial void OnobdChanging(string value);
-    partial void OnobdChanged();
-    partial void OnversionChanging(string value);
-    partial void OnversionChanged();
+    partial void Ontrang_thai_chinhChanging(System.Nullable<long> value);
+    partial void Ontrang_thai_chinhChanged();
+    partial void Ontrang_thai_mo_rongChanging(System.Nullable<long> value);
+    partial void Ontrang_thai_mo_rongChanged();
+    partial void Ontrang_thai_hopdenChanging(System.Nullable<byte> value);
+    partial void Ontrang_thai_hopdenChanged();
+    partial void Onmo_cuaChanging(System.Nullable<bool> value);
+    partial void Onmo_cuaChanged();
+    partial void Ondong_coChanging(System.Nullable<bool> value);
+    partial void Ondong_coChanged();
+    partial void Ondieu_hoaChanging(System.Nullable<bool> value);
+    partial void Ondieu_hoaChanged();
+    partial void Onvuot_tocChanging(System.Nullable<byte> value);
+    partial void Onvuot_tocChanged();
+    partial void OnflashChanging(System.Nullable<bool> value);
+    partial void OnflashChanged();
+    partial void Onsd_cardChanging(System.Nullable<bool> value);
+    partial void Onsd_cardChanged();
+    partial void Onmuc_acquyChanging(System.Nullable<int> value);
+    partial void Onmuc_acquyChanged();
+    partial void Onmuc_nhien_lieuChanging(System.Nullable<byte> value);
+    partial void Onmuc_nhien_lieuChanged();
+    partial void OntimeoutChanging(System.Nullable<short> value);
+    partial void OntimeoutChanged();
+    partial void Onvan_toc_coChanging(System.Nullable<byte> value);
+    partial void Onvan_toc_coChanged();
+    partial void Onvan_toc_gpsChanging(System.Nullable<byte> value);
+    partial void Onvan_toc_gpsChanged();
+    partial void Onid_lai_xeChanging(System.Nullable<int> value);
+    partial void Onid_lai_xeChanged();
+    partial void OnsimChanging(string value);
+    partial void OnsimChanged();
+    partial void Onthoi_diemChanging(System.DateTime value);
+    partial void Onthoi_diemChanged();
+    partial void Onlai_xe_lien_tucChanging(System.Nullable<int> value);
+    partial void Onlai_xe_lien_tucChanged();
+    partial void Onlai_xe_trong_ngayChanging(System.Nullable<int> value);
+    partial void Onlai_xe_trong_ngayChanged();
+    partial void Onquang_duong_lien_tucChanging(System.Nullable<double> value);
+    partial void Onquang_duong_lien_tucChanged();
+    partial void Onquang_duong_trong_ngayChanging(System.Nullable<double> value);
+    partial void Onquang_duong_trong_ngayChanged();
+    partial void Onlan_vuot_tocChanging(System.Nullable<int> value);
+    partial void Onlan_vuot_tocChanged();
+    partial void Onlan_mo_cuaChanging(System.Nullable<int> value);
+    partial void Onlan_mo_cuaChanged();
+    partial void Onlan_do_xeChanging(System.Nullable<int> value);
+    partial void Onlan_do_xeChanged();
+    partial void Onbonus_dataChanging(System.Data.Linq.Binary value);
+    partial void Onbonus_dataChanged();
+    partial void OnlatiChanging(System.Nullable<double> value);
+    partial void OnlatiChanged();
+    partial void OnlongiChanging(System.Nullable<double> value);
+    partial void OnlongiChanged();
+    partial void Onquang_duong_lien_tuc_gpsChanging(System.Nullable<double> value);
+    partial void Onquang_duong_lien_tuc_gpsChanged();
+    partial void Onquang_duong_trong_ngay_gpsChanging(System.Nullable<double> value);
+    partial void Onquang_duong_trong_ngay_gpsChanged();
+    partial void Onvan_toc_tuc_thoiChanging(string value);
+    partial void Onvan_toc_tuc_thoiChanged();
+    partial void OnENLChanging(System.Nullable<int> value);
+    partial void OnENLChanged();
+    partial void OnCOTChanging(System.Nullable<int> value);
+    partial void OnCOTChanged();
+    partial void OnRPMChanging(System.Nullable<int> value);
+    partial void OnRPMChanged();
+    partial void OnINTempChanging(System.Nullable<int> value);
+    partial void OnINTempChanged();
+    partial void OnDISChanging(System.Nullable<int> value);
+    partial void OnDISChanged();
+    partial void Oncam1_img_pathChanging(string value);
+    partial void Oncam1_img_pathChanged();
+    partial void Oncam2_img_pathChanging(string value);
+    partial void Oncam2_img_pathChanged();
+    partial void OnRFIDStringChanging(string value);
+    partial void OnRFIDStringChanged();
+    partial void OnPRESSChanging(System.Nullable<int> value);
+    partial void OnPRESSChanged();
+    partial void Onint_chuhangChanging(System.Nullable<int> value);
+    partial void Onint_chuhangChanged();
+    partial void Onid_vi_triChanging(int value);
+    partial void Onid_vi_triChanged();
+    partial void Onid_xeChanging(int value);
+    partial void Onid_xeChanged();
+    partial void Ontrang_thai_xeChanging(System.Nullable<byte> value);
+    partial void Ontrang_thai_xeChanged();
+    partial void OncellidChanging(System.Nullable<int> value);
+    partial void OncellidChanged();
     #endregion
 		
-		public online_record()
+		public history_record()
 		{
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imei", DbType="NChar(25) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
-		public string imei
-		{
-			get
-			{
-				return this._imei;
-			}
-			set
-			{
-				if ((this._imei != value))
-				{
-					this.OnimeiChanging(value);
-					this.SendPropertyChanging();
-					this._imei = value;
-					this.SendPropertyChanged("imei");
-					this.OnimeiChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_receivedTime", DbType="NChar(25)")]
-		public string receivedTime
-		{
-			get
-			{
-				return this._receivedTime;
-			}
-			set
-			{
-				if ((this._receivedTime != value))
-				{
-					this.OnreceivedTimeChanging(value);
-					this.SendPropertyChanging();
-					this._receivedTime = value;
-					this.SendPropertyChanged("receivedTime");
-					this.OnreceivedTimeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_longitude", DbType="NChar(10)")]
-		public string longitude
-		{
-			get
-			{
-				return this._longitude;
-			}
-			set
-			{
-				if ((this._longitude != value))
-				{
-					this.OnlongitudeChanging(value);
-					this.SendPropertyChanging();
-					this._longitude = value;
-					this.SendPropertyChanged("longitude");
-					this.OnlongitudeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_latitude", DbType="NChar(10)")]
-		public string latitude
-		{
-			get
-			{
-				return this._latitude;
-			}
-			set
-			{
-				if ((this._latitude != value))
-				{
-					this.OnlatitudeChanging(value);
-					this.SendPropertyChanging();
-					this._latitude = value;
-					this.SendPropertyChanged("latitude");
-					this.OnlatitudeChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_speed", DbType="NChar(10)")]
-		public string speed
-		{
-			get
-			{
-				return this._speed;
-			}
-			set
-			{
-				if ((this._speed != value))
-				{
-					this.OnspeedChanging(value);
-					this.SendPropertyChanging();
-					this._speed = value;
-					this.SendPropertyChanged("speed");
-					this.OnspeedChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mnc", DbType="NChar(10)")]
-		public string mnc
-		{
-			get
-			{
-				return this._mnc;
-			}
-			set
-			{
-				if ((this._mnc != value))
-				{
-					this.OnmncChanging(value);
-					this.SendPropertyChanging();
-					this._mnc = value;
-					this.SendPropertyChanged("mnc");
-					this.OnmncChanged();
-				}
-			}
-		}
-		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lac", DbType="NChar(10)")]
-		public string lac
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lac", DbType="Int")]
+		public System.Nullable<int> lac
 		{
 			get
 			{
@@ -310,8 +328,8 @@ namespace DataHandleWebService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sos", DbType="NChar(10)")]
-		public string sos
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sos", DbType="Bit")]
+		public System.Nullable<bool> sos
 		{
 			get
 			{
@@ -330,182 +348,882 @@ namespace DataHandleWebService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strong_box_open", DbType="NChar(10)")]
-		public string strong_box_open
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trang_thai_chinh", DbType="BigInt")]
+		public System.Nullable<long> trang_thai_chinh
 		{
 			get
 			{
-				return this._strong_box_open;
+				return this._trang_thai_chinh;
 			}
 			set
 			{
-				if ((this._strong_box_open != value))
+				if ((this._trang_thai_chinh != value))
 				{
-					this.Onstrong_box_openChanging(value);
+					this.Ontrang_thai_chinhChanging(value);
 					this.SendPropertyChanging();
-					this._strong_box_open = value;
-					this.SendPropertyChanged("strong_box_open");
-					this.Onstrong_box_openChanged();
+					this._trang_thai_chinh = value;
+					this.SendPropertyChanged("trang_thai_chinh");
+					this.Ontrang_thai_chinhChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_engine_on", DbType="NChar(10)")]
-		public string engine_on
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trang_thai_mo_rong", DbType="BigInt")]
+		public System.Nullable<long> trang_thai_mo_rong
 		{
 			get
 			{
-				return this._engine_on;
+				return this._trang_thai_mo_rong;
 			}
 			set
 			{
-				if ((this._engine_on != value))
+				if ((this._trang_thai_mo_rong != value))
 				{
-					this.Onengine_onChanging(value);
+					this.Ontrang_thai_mo_rongChanging(value);
 					this.SendPropertyChanging();
-					this._engine_on = value;
-					this.SendPropertyChanged("engine_on");
-					this.Onengine_onChanged();
+					this._trang_thai_mo_rong = value;
+					this.SendPropertyChanged("trang_thai_mo_rong");
+					this.Ontrang_thai_mo_rongChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_stopping", DbType="NChar(10)")]
-		public string stopping
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trang_thai_hopden", DbType="TinyInt")]
+		public System.Nullable<byte> trang_thai_hopden
 		{
 			get
 			{
-				return this._stopping;
+				return this._trang_thai_hopden;
 			}
 			set
 			{
-				if ((this._stopping != value))
+				if ((this._trang_thai_hopden != value))
 				{
-					this.OnstoppingChanging(value);
+					this.Ontrang_thai_hopdenChanging(value);
 					this.SendPropertyChanging();
-					this._stopping = value;
-					this.SendPropertyChanged("stopping");
-					this.OnstoppingChanged();
+					this._trang_thai_hopden = value;
+					this.SendPropertyChanged("trang_thai_hopden");
+					this.Ontrang_thai_hopdenChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gps_lost", DbType="NChar(10)")]
-		public string gps_lost
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mo_cua", DbType="Bit")]
+		public System.Nullable<bool> mo_cua
 		{
 			get
 			{
-				return this._gps_lost;
+				return this._mo_cua;
 			}
 			set
 			{
-				if ((this._gps_lost != value))
+				if ((this._mo_cua != value))
 				{
-					this.Ongps_lostChanging(value);
+					this.Onmo_cuaChanging(value);
 					this.SendPropertyChanging();
-					this._gps_lost = value;
-					this.SendPropertyChanged("gps_lost");
-					this.Ongps_lostChanged();
+					this._mo_cua = value;
+					this.SendPropertyChanged("mo_cua");
+					this.Onmo_cuaChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image_cam1", DbType="NChar(10)")]
-		public string image_cam1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dong_co", DbType="Bit")]
+		public System.Nullable<bool> dong_co
 		{
 			get
 			{
-				return this._image_cam1;
+				return this._dong_co;
 			}
 			set
 			{
-				if ((this._image_cam1 != value))
+				if ((this._dong_co != value))
 				{
-					this.Onimage_cam1Changing(value);
+					this.Ondong_coChanging(value);
 					this.SendPropertyChanging();
-					this._image_cam1 = value;
-					this.SendPropertyChanged("image_cam1");
-					this.Onimage_cam1Changed();
+					this._dong_co = value;
+					this.SendPropertyChanged("dong_co");
+					this.Ondong_coChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image_cam2", DbType="NChar(10)")]
-		public string image_cam2
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dieu_hoa", DbType="Bit")]
+		public System.Nullable<bool> dieu_hoa
 		{
 			get
 			{
-				return this._image_cam2;
+				return this._dieu_hoa;
 			}
 			set
 			{
-				if ((this._image_cam2 != value))
+				if ((this._dieu_hoa != value))
 				{
-					this.Onimage_cam2Changing(value);
+					this.Ondieu_hoaChanging(value);
 					this.SendPropertyChanging();
-					this._image_cam2 = value;
-					this.SendPropertyChanged("image_cam2");
-					this.Onimage_cam2Changed();
+					this._dieu_hoa = value;
+					this.SendPropertyChanged("dieu_hoa");
+					this.Ondieu_hoaChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rfid", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string rfid
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vuot_toc", DbType="TinyInt")]
+		public System.Nullable<byte> vuot_toc
 		{
 			get
 			{
-				return this._rfid;
+				return this._vuot_toc;
 			}
 			set
 			{
-				if ((this._rfid != value))
+				if ((this._vuot_toc != value))
 				{
-					this.OnrfidChanging(value);
+					this.Onvuot_tocChanging(value);
 					this.SendPropertyChanging();
-					this._rfid = value;
-					this.SendPropertyChanged("rfid");
-					this.OnrfidChanged();
+					this._vuot_toc = value;
+					this.SendPropertyChanged("vuot_toc");
+					this.Onvuot_tocChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_obd", DbType="NChar(10)")]
-		public string obd
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_flash", DbType="Bit")]
+		public System.Nullable<bool> flash
 		{
 			get
 			{
-				return this._obd;
+				return this._flash;
 			}
 			set
 			{
-				if ((this._obd != value))
+				if ((this._flash != value))
 				{
-					this.OnobdChanging(value);
+					this.OnflashChanging(value);
 					this.SendPropertyChanging();
-					this._obd = value;
-					this.SendPropertyChanged("obd");
-					this.OnobdChanged();
+					this._flash = value;
+					this.SendPropertyChanged("flash");
+					this.OnflashChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_version", DbType="NChar(20)")]
-		public string version
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sd_card", DbType="Bit")]
+		public System.Nullable<bool> sd_card
 		{
 			get
 			{
-				return this._version;
+				return this._sd_card;
 			}
 			set
 			{
-				if ((this._version != value))
+				if ((this._sd_card != value))
 				{
-					this.OnversionChanging(value);
+					this.Onsd_cardChanging(value);
 					this.SendPropertyChanging();
-					this._version = value;
-					this.SendPropertyChanged("version");
-					this.OnversionChanged();
+					this._sd_card = value;
+					this.SendPropertyChanged("sd_card");
+					this.Onsd_cardChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_muc_acquy", DbType="Int")]
+		public System.Nullable<int> muc_acquy
+		{
+			get
+			{
+				return this._muc_acquy;
+			}
+			set
+			{
+				if ((this._muc_acquy != value))
+				{
+					this.Onmuc_acquyChanging(value);
+					this.SendPropertyChanging();
+					this._muc_acquy = value;
+					this.SendPropertyChanged("muc_acquy");
+					this.Onmuc_acquyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_muc_nhien_lieu", DbType="TinyInt")]
+		public System.Nullable<byte> muc_nhien_lieu
+		{
+			get
+			{
+				return this._muc_nhien_lieu;
+			}
+			set
+			{
+				if ((this._muc_nhien_lieu != value))
+				{
+					this.Onmuc_nhien_lieuChanging(value);
+					this.SendPropertyChanging();
+					this._muc_nhien_lieu = value;
+					this.SendPropertyChanged("muc_nhien_lieu");
+					this.Onmuc_nhien_lieuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_timeout", DbType="SmallInt")]
+		public System.Nullable<short> timeout
+		{
+			get
+			{
+				return this._timeout;
+			}
+			set
+			{
+				if ((this._timeout != value))
+				{
+					this.OntimeoutChanging(value);
+					this.SendPropertyChanging();
+					this._timeout = value;
+					this.SendPropertyChanged("timeout");
+					this.OntimeoutChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_van_toc_co", DbType="TinyInt")]
+		public System.Nullable<byte> van_toc_co
+		{
+			get
+			{
+				return this._van_toc_co;
+			}
+			set
+			{
+				if ((this._van_toc_co != value))
+				{
+					this.Onvan_toc_coChanging(value);
+					this.SendPropertyChanging();
+					this._van_toc_co = value;
+					this.SendPropertyChanged("van_toc_co");
+					this.Onvan_toc_coChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_van_toc_gps", DbType="TinyInt")]
+		public System.Nullable<byte> van_toc_gps
+		{
+			get
+			{
+				return this._van_toc_gps;
+			}
+			set
+			{
+				if ((this._van_toc_gps != value))
+				{
+					this.Onvan_toc_gpsChanging(value);
+					this.SendPropertyChanging();
+					this._van_toc_gps = value;
+					this.SendPropertyChanged("van_toc_gps");
+					this.Onvan_toc_gpsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_lai_xe", DbType="Int")]
+		public System.Nullable<int> id_lai_xe
+		{
+			get
+			{
+				return this._id_lai_xe;
+			}
+			set
+			{
+				if ((this._id_lai_xe != value))
+				{
+					this.Onid_lai_xeChanging(value);
+					this.SendPropertyChanging();
+					this._id_lai_xe = value;
+					this.SendPropertyChanged("id_lai_xe");
+					this.Onid_lai_xeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sim", DbType="VarChar(20)")]
+		public string sim
+		{
+			get
+			{
+				return this._sim;
+			}
+			set
+			{
+				if ((this._sim != value))
+				{
+					this.OnsimChanging(value);
+					this.SendPropertyChanging();
+					this._sim = value;
+					this.SendPropertyChanged("sim");
+					this.OnsimChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_thoi_diem", DbType="DateTime NOT NULL")]
+		public System.DateTime thoi_diem
+		{
+			get
+			{
+				return this._thoi_diem;
+			}
+			set
+			{
+				if ((this._thoi_diem != value))
+				{
+					this.Onthoi_diemChanging(value);
+					this.SendPropertyChanging();
+					this._thoi_diem = value;
+					this.SendPropertyChanged("thoi_diem");
+					this.Onthoi_diemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lai_xe_lien_tuc", DbType="Int")]
+		public System.Nullable<int> lai_xe_lien_tuc
+		{
+			get
+			{
+				return this._lai_xe_lien_tuc;
+			}
+			set
+			{
+				if ((this._lai_xe_lien_tuc != value))
+				{
+					this.Onlai_xe_lien_tucChanging(value);
+					this.SendPropertyChanging();
+					this._lai_xe_lien_tuc = value;
+					this.SendPropertyChanged("lai_xe_lien_tuc");
+					this.Onlai_xe_lien_tucChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lai_xe_trong_ngay", DbType="Int")]
+		public System.Nullable<int> lai_xe_trong_ngay
+		{
+			get
+			{
+				return this._lai_xe_trong_ngay;
+			}
+			set
+			{
+				if ((this._lai_xe_trong_ngay != value))
+				{
+					this.Onlai_xe_trong_ngayChanging(value);
+					this.SendPropertyChanging();
+					this._lai_xe_trong_ngay = value;
+					this.SendPropertyChanged("lai_xe_trong_ngay");
+					this.Onlai_xe_trong_ngayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quang_duong_lien_tuc", DbType="Float")]
+		public System.Nullable<double> quang_duong_lien_tuc
+		{
+			get
+			{
+				return this._quang_duong_lien_tuc;
+			}
+			set
+			{
+				if ((this._quang_duong_lien_tuc != value))
+				{
+					this.Onquang_duong_lien_tucChanging(value);
+					this.SendPropertyChanging();
+					this._quang_duong_lien_tuc = value;
+					this.SendPropertyChanged("quang_duong_lien_tuc");
+					this.Onquang_duong_lien_tucChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quang_duong_trong_ngay", DbType="Float")]
+		public System.Nullable<double> quang_duong_trong_ngay
+		{
+			get
+			{
+				return this._quang_duong_trong_ngay;
+			}
+			set
+			{
+				if ((this._quang_duong_trong_ngay != value))
+				{
+					this.Onquang_duong_trong_ngayChanging(value);
+					this.SendPropertyChanging();
+					this._quang_duong_trong_ngay = value;
+					this.SendPropertyChanged("quang_duong_trong_ngay");
+					this.Onquang_duong_trong_ngayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lan_vuot_toc", DbType="Int")]
+		public System.Nullable<int> lan_vuot_toc
+		{
+			get
+			{
+				return this._lan_vuot_toc;
+			}
+			set
+			{
+				if ((this._lan_vuot_toc != value))
+				{
+					this.Onlan_vuot_tocChanging(value);
+					this.SendPropertyChanging();
+					this._lan_vuot_toc = value;
+					this.SendPropertyChanged("lan_vuot_toc");
+					this.Onlan_vuot_tocChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lan_mo_cua", DbType="Int")]
+		public System.Nullable<int> lan_mo_cua
+		{
+			get
+			{
+				return this._lan_mo_cua;
+			}
+			set
+			{
+				if ((this._lan_mo_cua != value))
+				{
+					this.Onlan_mo_cuaChanging(value);
+					this.SendPropertyChanging();
+					this._lan_mo_cua = value;
+					this.SendPropertyChanged("lan_mo_cua");
+					this.Onlan_mo_cuaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lan_do_xe", DbType="Int")]
+		public System.Nullable<int> lan_do_xe
+		{
+			get
+			{
+				return this._lan_do_xe;
+			}
+			set
+			{
+				if ((this._lan_do_xe != value))
+				{
+					this.Onlan_do_xeChanging(value);
+					this.SendPropertyChanging();
+					this._lan_do_xe = value;
+					this.SendPropertyChanged("lan_do_xe");
+					this.Onlan_do_xeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bonus_data", DbType="Binary(50)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary bonus_data
+		{
+			get
+			{
+				return this._bonus_data;
+			}
+			set
+			{
+				if ((this._bonus_data != value))
+				{
+					this.Onbonus_dataChanging(value);
+					this.SendPropertyChanging();
+					this._bonus_data = value;
+					this.SendPropertyChanged("bonus_data");
+					this.Onbonus_dataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lati", DbType="Float")]
+		public System.Nullable<double> lati
+		{
+			get
+			{
+				return this._lati;
+			}
+			set
+			{
+				if ((this._lati != value))
+				{
+					this.OnlatiChanging(value);
+					this.SendPropertyChanging();
+					this._lati = value;
+					this.SendPropertyChanged("lati");
+					this.OnlatiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_longi", DbType="Float")]
+		public System.Nullable<double> longi
+		{
+			get
+			{
+				return this._longi;
+			}
+			set
+			{
+				if ((this._longi != value))
+				{
+					this.OnlongiChanging(value);
+					this.SendPropertyChanging();
+					this._longi = value;
+					this.SendPropertyChanged("longi");
+					this.OnlongiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quang_duong_lien_tuc_gps", DbType="Float")]
+		public System.Nullable<double> quang_duong_lien_tuc_gps
+		{
+			get
+			{
+				return this._quang_duong_lien_tuc_gps;
+			}
+			set
+			{
+				if ((this._quang_duong_lien_tuc_gps != value))
+				{
+					this.Onquang_duong_lien_tuc_gpsChanging(value);
+					this.SendPropertyChanging();
+					this._quang_duong_lien_tuc_gps = value;
+					this.SendPropertyChanged("quang_duong_lien_tuc_gps");
+					this.Onquang_duong_lien_tuc_gpsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quang_duong_trong_ngay_gps", DbType="Float")]
+		public System.Nullable<double> quang_duong_trong_ngay_gps
+		{
+			get
+			{
+				return this._quang_duong_trong_ngay_gps;
+			}
+			set
+			{
+				if ((this._quang_duong_trong_ngay_gps != value))
+				{
+					this.Onquang_duong_trong_ngay_gpsChanging(value);
+					this.SendPropertyChanging();
+					this._quang_duong_trong_ngay_gps = value;
+					this.SendPropertyChanged("quang_duong_trong_ngay_gps");
+					this.Onquang_duong_trong_ngay_gpsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_van_toc_tuc_thoi", DbType="NVarChar(MAX)")]
+		public string van_toc_tuc_thoi
+		{
+			get
+			{
+				return this._van_toc_tuc_thoi;
+			}
+			set
+			{
+				if ((this._van_toc_tuc_thoi != value))
+				{
+					this.Onvan_toc_tuc_thoiChanging(value);
+					this.SendPropertyChanging();
+					this._van_toc_tuc_thoi = value;
+					this.SendPropertyChanged("van_toc_tuc_thoi");
+					this.Onvan_toc_tuc_thoiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ENL", DbType="Int")]
+		public System.Nullable<int> ENL
+		{
+			get
+			{
+				return this._ENL;
+			}
+			set
+			{
+				if ((this._ENL != value))
+				{
+					this.OnENLChanging(value);
+					this.SendPropertyChanging();
+					this._ENL = value;
+					this.SendPropertyChanged("ENL");
+					this.OnENLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COT", DbType="Int")]
+		public System.Nullable<int> COT
+		{
+			get
+			{
+				return this._COT;
+			}
+			set
+			{
+				if ((this._COT != value))
+				{
+					this.OnCOTChanging(value);
+					this.SendPropertyChanging();
+					this._COT = value;
+					this.SendPropertyChanged("COT");
+					this.OnCOTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RPM", DbType="Int")]
+		public System.Nullable<int> RPM
+		{
+			get
+			{
+				return this._RPM;
+			}
+			set
+			{
+				if ((this._RPM != value))
+				{
+					this.OnRPMChanging(value);
+					this.SendPropertyChanging();
+					this._RPM = value;
+					this.SendPropertyChanged("RPM");
+					this.OnRPMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_INTemp", DbType="Int")]
+		public System.Nullable<int> INTemp
+		{
+			get
+			{
+				return this._INTemp;
+			}
+			set
+			{
+				if ((this._INTemp != value))
+				{
+					this.OnINTempChanging(value);
+					this.SendPropertyChanging();
+					this._INTemp = value;
+					this.SendPropertyChanged("INTemp");
+					this.OnINTempChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DIS", DbType="Int")]
+		public System.Nullable<int> DIS
+		{
+			get
+			{
+				return this._DIS;
+			}
+			set
+			{
+				if ((this._DIS != value))
+				{
+					this.OnDISChanging(value);
+					this.SendPropertyChanging();
+					this._DIS = value;
+					this.SendPropertyChanged("DIS");
+					this.OnDISChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cam1_img_path", DbType="VarChar(256)")]
+		public string cam1_img_path
+		{
+			get
+			{
+				return this._cam1_img_path;
+			}
+			set
+			{
+				if ((this._cam1_img_path != value))
+				{
+					this.Oncam1_img_pathChanging(value);
+					this.SendPropertyChanging();
+					this._cam1_img_path = value;
+					this.SendPropertyChanged("cam1_img_path");
+					this.Oncam1_img_pathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cam2_img_path", DbType="VarChar(256)")]
+		public string cam2_img_path
+		{
+			get
+			{
+				return this._cam2_img_path;
+			}
+			set
+			{
+				if ((this._cam2_img_path != value))
+				{
+					this.Oncam2_img_pathChanging(value);
+					this.SendPropertyChanging();
+					this._cam2_img_path = value;
+					this.SendPropertyChanged("cam2_img_path");
+					this.Oncam2_img_pathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RFIDString", DbType="VarChar(256)")]
+		public string RFIDString
+		{
+			get
+			{
+				return this._RFIDString;
+			}
+			set
+			{
+				if ((this._RFIDString != value))
+				{
+					this.OnRFIDStringChanging(value);
+					this.SendPropertyChanging();
+					this._RFIDString = value;
+					this.SendPropertyChanged("RFIDString");
+					this.OnRFIDStringChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PRESS", DbType="Int")]
+		public System.Nullable<int> PRESS
+		{
+			get
+			{
+				return this._PRESS;
+			}
+			set
+			{
+				if ((this._PRESS != value))
+				{
+					this.OnPRESSChanging(value);
+					this.SendPropertyChanging();
+					this._PRESS = value;
+					this.SendPropertyChanged("PRESS");
+					this.OnPRESSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_int_chuhang", DbType="Int")]
+		public System.Nullable<int> int_chuhang
+		{
+			get
+			{
+				return this._int_chuhang;
+			}
+			set
+			{
+				if ((this._int_chuhang != value))
+				{
+					this.Onint_chuhangChanging(value);
+					this.SendPropertyChanging();
+					this._int_chuhang = value;
+					this.SendPropertyChanged("int_chuhang");
+					this.Onint_chuhangChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_vi_tri", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_vi_tri
+		{
+			get
+			{
+				return this._id_vi_tri;
+			}
+			set
+			{
+				if ((this._id_vi_tri != value))
+				{
+					this.Onid_vi_triChanging(value);
+					this.SendPropertyChanging();
+					this._id_vi_tri = value;
+					this.SendPropertyChanged("id_vi_tri");
+					this.Onid_vi_triChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_xe", DbType="Int NOT NULL")]
+		public int id_xe
+		{
+			get
+			{
+				return this._id_xe;
+			}
+			set
+			{
+				if ((this._id_xe != value))
+				{
+					this.Onid_xeChanging(value);
+					this.SendPropertyChanging();
+					this._id_xe = value;
+					this.SendPropertyChanged("id_xe");
+					this.Onid_xeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trang_thai_xe", DbType="TinyInt")]
+		public System.Nullable<byte> trang_thai_xe
+		{
+			get
+			{
+				return this._trang_thai_xe;
+			}
+			set
+			{
+				if ((this._trang_thai_xe != value))
+				{
+					this.Ontrang_thai_xeChanging(value);
+					this.SendPropertyChanging();
+					this._trang_thai_xe = value;
+					this.SendPropertyChanged("trang_thai_xe");
+					this.Ontrang_thai_xeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cellid", DbType="Int")]
+		public System.Nullable<int> cellid
+		{
+			get
+			{
+				return this._cellid;
+			}
+			set
+			{
+				if ((this._cellid != value))
+				{
+					this.OncellidChanging(value);
+					this.SendPropertyChanging();
+					this._cellid = value;
+					this.SendPropertyChanged("cellid");
+					this.OncellidChanged();
 				}
 			}
 		}
@@ -531,92 +1249,1878 @@ namespace DataHandleWebService
 		}
 	}
 	
-	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.history_record")]
-	public partial class history_record : INotifyPropertyChanging, INotifyPropertyChanged
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.online_record")]
+	public partial class online_record : INotifyPropertyChanging, INotifyPropertyChanged
 	{
 		
 		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
 		
-		private string _imei;
+		private System.Nullable<int> _lac;
 		
-		private string _receivedTime;
+		private System.Nullable<bool> _sos;
 		
-		private string _longitude;
+		private System.Nullable<long> _trang_thai_chinh;
 		
-		private string _latitude;
+		private System.Nullable<long> _trang_thai_mo_rong;
 		
-		private string _speed;
+		private System.Nullable<byte> _trang_thai_hopden;
 		
-		private string _mnc;
+		private System.Nullable<bool> _mo_cua;
 		
-		private string _lac;
+		private System.Nullable<bool> _dong_co;
 		
-		private string _sos;
+		private System.Nullable<bool> _dieu_hoa;
 		
-		private string _strong_box_open;
+		private System.Nullable<byte> _vuot_toc;
 		
-		private string _engine_on;
+		private System.Nullable<bool> _flash;
 		
-		private string _stopping;
+		private System.Nullable<bool> _sd_card;
 		
-		private string _gps_lost;
+		private System.Nullable<int> _muc_acquy;
 		
-		private string _image_cam1;
+		private System.Nullable<byte> _muc_nhien_lieu;
 		
-		private string _image_cam2;
+		private System.Nullable<short> _timeout;
 		
-		private string _rfid;
+		private System.Nullable<byte> _van_toc_co;
 		
-		private string _obd;
+		private System.Nullable<byte> _van_toc_gps;
 		
-		private string _version;
+		private System.Nullable<int> _id_lai_xe;
+		
+		private string _sim;
+		
+		private System.DateTime _thoi_diem;
+		
+		private System.Nullable<int> _lai_xe_lien_tuc;
+		
+		private System.Nullable<int> _lai_xe_trong_ngay;
+		
+		private System.Nullable<double> _quang_duong_lien_tuc;
+		
+		private System.Nullable<double> _quang_duong_trong_ngay;
+		
+		private System.Nullable<int> _lan_vuot_toc;
+		
+		private System.Nullable<int> _lan_mo_cua;
+		
+		private System.Nullable<int> _lan_do_xe;
+		
+		private System.Data.Linq.Binary _bonus_data;
+		
+		private System.Nullable<double> _lati;
+		
+		private System.Nullable<double> _longi;
+		
+		private System.Nullable<double> _quang_duong_lien_tuc_gps;
+		
+		private System.Nullable<double> _quang_duong_trong_ngay_gps;
+		
+		private string _van_toc_tuc_thoi;
+		
+		private System.Nullable<int> _ENL;
+		
+		private System.Nullable<int> _COT;
+		
+		private System.Nullable<int> _RPM;
+		
+		private System.Nullable<int> _INTemp;
+		
+		private System.Nullable<int> _DIS;
+		
+		private string _cam1_img_path;
+		
+		private string _cam2_img_path;
+		
+		private string _RFIDString;
+		
+		private System.Nullable<int> _PRESS;
+		
+		private System.Nullable<int> _int_chuhang;
+		
+		private int _id_xe;
+		
+		private int _id_vi_tri;
+		
+		private System.Nullable<byte> _trang_thai_xe;
+		
+		private System.Nullable<short> _duy_tri_trang_thai;
+		
+		private string _last_standard_prt;
+		
+		private System.Nullable<int> _thoi_gian_lai_xe_all;
+		
+		private System.Nullable<double> _km_gps_all;
+		
+		private System.Nullable<double> _km_xung_all;
+		
+		private System.Nullable<int> _dung_do_all;
+		
+		private System.Nullable<int> _mo_cua_all;
+		
+		private System.Nullable<int> _vuot_toc_all;
+		
+		private System.Nullable<System.DateTime> _last_time_upadate_router;
+		
+		private System.Nullable<int> _message_index;
+		
+		private System.Nullable<bool> _online;
+		
+		private System.Nullable<int> _thoi_gian_dung_do_lien_tuc;
+		
+		private System.Nullable<int> _thoi_gian_di_chuyen_lien_tuc;
+		
+		private System.Nullable<int> _thoi_gian_mo_cua_lien_tuc;
+		
+		private System.Nullable<int> _thoi_gian_vuot_toc_lien_tuc;
+		
+		private string _toc_do_tuc_thoi;
+		
+		private System.Nullable<int> _cellid;
+		
+		private System.Nullable<double> _cellid_gpslat;
+		
+		private System.Nullable<double> _cellid_gpslon;
+		
+		private System.Nullable<System.DateTime> _thoi_diem_nhan_tin;
+		
+		private string _phienban;
 		
     #region Extensibility Method Definitions
     partial void OnLoaded();
     partial void OnValidate(System.Data.Linq.ChangeAction action);
     partial void OnCreated();
-    partial void OnimeiChanging(string value);
-    partial void OnimeiChanged();
-    partial void OnreceivedTimeChanging(string value);
-    partial void OnreceivedTimeChanged();
-    partial void OnlongitudeChanging(string value);
-    partial void OnlongitudeChanged();
-    partial void OnlatitudeChanging(string value);
-    partial void OnlatitudeChanged();
-    partial void OnspeedChanging(string value);
-    partial void OnspeedChanged();
-    partial void OnmncChanging(string value);
-    partial void OnmncChanged();
-    partial void OnlacChanging(string value);
+    partial void OnlacChanging(System.Nullable<int> value);
     partial void OnlacChanged();
-    partial void OnsosChanging(string value);
+    partial void OnsosChanging(System.Nullable<bool> value);
     partial void OnsosChanged();
-    partial void Onstrong_box_openChanging(string value);
-    partial void Onstrong_box_openChanged();
-    partial void Onengine_onChanging(string value);
-    partial void Onengine_onChanged();
-    partial void OnstoppingChanging(string value);
-    partial void OnstoppingChanged();
-    partial void Ongps_lostChanging(string value);
-    partial void Ongps_lostChanged();
-    partial void Onimage_cam1Changing(string value);
-    partial void Onimage_cam1Changed();
-    partial void Onimage_cam2Changing(string value);
-    partial void Onimage_cam2Changed();
-    partial void OnrfidChanging(string value);
-    partial void OnrfidChanged();
-    partial void OnobdChanging(string value);
-    partial void OnobdChanged();
-    partial void OnversionChanging(string value);
-    partial void OnversionChanged();
+    partial void Ontrang_thai_chinhChanging(System.Nullable<long> value);
+    partial void Ontrang_thai_chinhChanged();
+    partial void Ontrang_thai_mo_rongChanging(System.Nullable<long> value);
+    partial void Ontrang_thai_mo_rongChanged();
+    partial void Ontrang_thai_hopdenChanging(System.Nullable<byte> value);
+    partial void Ontrang_thai_hopdenChanged();
+    partial void Onmo_cuaChanging(System.Nullable<bool> value);
+    partial void Onmo_cuaChanged();
+    partial void Ondong_coChanging(System.Nullable<bool> value);
+    partial void Ondong_coChanged();
+    partial void Ondieu_hoaChanging(System.Nullable<bool> value);
+    partial void Ondieu_hoaChanged();
+    partial void Onvuot_tocChanging(System.Nullable<byte> value);
+    partial void Onvuot_tocChanged();
+    partial void OnflashChanging(System.Nullable<bool> value);
+    partial void OnflashChanged();
+    partial void Onsd_cardChanging(System.Nullable<bool> value);
+    partial void Onsd_cardChanged();
+    partial void Onmuc_acquyChanging(System.Nullable<int> value);
+    partial void Onmuc_acquyChanged();
+    partial void Onmuc_nhien_lieuChanging(System.Nullable<byte> value);
+    partial void Onmuc_nhien_lieuChanged();
+    partial void OntimeoutChanging(System.Nullable<short> value);
+    partial void OntimeoutChanged();
+    partial void Onvan_toc_coChanging(System.Nullable<byte> value);
+    partial void Onvan_toc_coChanged();
+    partial void Onvan_toc_gpsChanging(System.Nullable<byte> value);
+    partial void Onvan_toc_gpsChanged();
+    partial void Onid_lai_xeChanging(System.Nullable<int> value);
+    partial void Onid_lai_xeChanged();
+    partial void OnsimChanging(string value);
+    partial void OnsimChanged();
+    partial void Onthoi_diemChanging(System.DateTime value);
+    partial void Onthoi_diemChanged();
+    partial void Onlai_xe_lien_tucChanging(System.Nullable<int> value);
+    partial void Onlai_xe_lien_tucChanged();
+    partial void Onlai_xe_trong_ngayChanging(System.Nullable<int> value);
+    partial void Onlai_xe_trong_ngayChanged();
+    partial void Onquang_duong_lien_tucChanging(System.Nullable<double> value);
+    partial void Onquang_duong_lien_tucChanged();
+    partial void Onquang_duong_trong_ngayChanging(System.Nullable<double> value);
+    partial void Onquang_duong_trong_ngayChanged();
+    partial void Onlan_vuot_tocChanging(System.Nullable<int> value);
+    partial void Onlan_vuot_tocChanged();
+    partial void Onlan_mo_cuaChanging(System.Nullable<int> value);
+    partial void Onlan_mo_cuaChanged();
+    partial void Onlan_do_xeChanging(System.Nullable<int> value);
+    partial void Onlan_do_xeChanged();
+    partial void Onbonus_dataChanging(System.Data.Linq.Binary value);
+    partial void Onbonus_dataChanged();
+    partial void OnlatiChanging(System.Nullable<double> value);
+    partial void OnlatiChanged();
+    partial void OnlongiChanging(System.Nullable<double> value);
+    partial void OnlongiChanged();
+    partial void Onquang_duong_lien_tuc_gpsChanging(System.Nullable<double> value);
+    partial void Onquang_duong_lien_tuc_gpsChanged();
+    partial void Onquang_duong_trong_ngay_gpsChanging(System.Nullable<double> value);
+    partial void Onquang_duong_trong_ngay_gpsChanged();
+    partial void Onvan_toc_tuc_thoiChanging(string value);
+    partial void Onvan_toc_tuc_thoiChanged();
+    partial void OnENLChanging(System.Nullable<int> value);
+    partial void OnENLChanged();
+    partial void OnCOTChanging(System.Nullable<int> value);
+    partial void OnCOTChanged();
+    partial void OnRPMChanging(System.Nullable<int> value);
+    partial void OnRPMChanged();
+    partial void OnINTempChanging(System.Nullable<int> value);
+    partial void OnINTempChanged();
+    partial void OnDISChanging(System.Nullable<int> value);
+    partial void OnDISChanged();
+    partial void Oncam1_img_pathChanging(string value);
+    partial void Oncam1_img_pathChanged();
+    partial void Oncam2_img_pathChanging(string value);
+    partial void Oncam2_img_pathChanged();
+    partial void OnRFIDStringChanging(string value);
+    partial void OnRFIDStringChanged();
+    partial void OnPRESSChanging(System.Nullable<int> value);
+    partial void OnPRESSChanged();
+    partial void Onint_chuhangChanging(System.Nullable<int> value);
+    partial void Onint_chuhangChanged();
+    partial void Onid_xeChanging(int value);
+    partial void Onid_xeChanged();
+    partial void Onid_vi_triChanging(int value);
+    partial void Onid_vi_triChanged();
+    partial void Ontrang_thai_xeChanging(System.Nullable<byte> value);
+    partial void Ontrang_thai_xeChanged();
+    partial void Onduy_tri_trang_thaiChanging(System.Nullable<short> value);
+    partial void Onduy_tri_trang_thaiChanged();
+    partial void Onlast_standard_prtChanging(string value);
+    partial void Onlast_standard_prtChanged();
+    partial void Onthoi_gian_lai_xe_allChanging(System.Nullable<int> value);
+    partial void Onthoi_gian_lai_xe_allChanged();
+    partial void Onkm_gps_allChanging(System.Nullable<double> value);
+    partial void Onkm_gps_allChanged();
+    partial void Onkm_xung_allChanging(System.Nullable<double> value);
+    partial void Onkm_xung_allChanged();
+    partial void Ondung_do_allChanging(System.Nullable<int> value);
+    partial void Ondung_do_allChanged();
+    partial void Onmo_cua_allChanging(System.Nullable<int> value);
+    partial void Onmo_cua_allChanged();
+    partial void Onvuot_toc_allChanging(System.Nullable<int> value);
+    partial void Onvuot_toc_allChanged();
+    partial void Onlast_time_upadate_routerChanging(System.Nullable<System.DateTime> value);
+    partial void Onlast_time_upadate_routerChanged();
+    partial void Onmessage_indexChanging(System.Nullable<int> value);
+    partial void Onmessage_indexChanged();
+    partial void OnonlineChanging(System.Nullable<bool> value);
+    partial void OnonlineChanged();
+    partial void Onthoi_gian_dung_do_lien_tucChanging(System.Nullable<int> value);
+    partial void Onthoi_gian_dung_do_lien_tucChanged();
+    partial void Onthoi_gian_di_chuyen_lien_tucChanging(System.Nullable<int> value);
+    partial void Onthoi_gian_di_chuyen_lien_tucChanged();
+    partial void Onthoi_gian_mo_cua_lien_tucChanging(System.Nullable<int> value);
+    partial void Onthoi_gian_mo_cua_lien_tucChanged();
+    partial void Onthoi_gian_vuot_toc_lien_tucChanging(System.Nullable<int> value);
+    partial void Onthoi_gian_vuot_toc_lien_tucChanged();
+    partial void Ontoc_do_tuc_thoiChanging(string value);
+    partial void Ontoc_do_tuc_thoiChanged();
+    partial void OncellidChanging(System.Nullable<int> value);
+    partial void OncellidChanged();
+    partial void Oncellid_gpslatChanging(System.Nullable<double> value);
+    partial void Oncellid_gpslatChanged();
+    partial void Oncellid_gpslonChanging(System.Nullable<double> value);
+    partial void Oncellid_gpslonChanged();
+    partial void Onthoi_diem_nhan_tinChanging(System.Nullable<System.DateTime> value);
+    partial void Onthoi_diem_nhan_tinChanged();
+    partial void OnphienbanChanging(string value);
+    partial void OnphienbanChanged();
     #endregion
 		
-		public history_record()
+		public online_record()
 		{
 			OnCreated();
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imei", DbType="NChar(20) NOT NULL", CanBeNull=false, IsPrimaryKey=true)]
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lac", DbType="Int")]
+		public System.Nullable<int> lac
+		{
+			get
+			{
+				return this._lac;
+			}
+			set
+			{
+				if ((this._lac != value))
+				{
+					this.OnlacChanging(value);
+					this.SendPropertyChanging();
+					this._lac = value;
+					this.SendPropertyChanged("lac");
+					this.OnlacChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sos", DbType="Bit")]
+		public System.Nullable<bool> sos
+		{
+			get
+			{
+				return this._sos;
+			}
+			set
+			{
+				if ((this._sos != value))
+				{
+					this.OnsosChanging(value);
+					this.SendPropertyChanging();
+					this._sos = value;
+					this.SendPropertyChanged("sos");
+					this.OnsosChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trang_thai_chinh", DbType="BigInt")]
+		public System.Nullable<long> trang_thai_chinh
+		{
+			get
+			{
+				return this._trang_thai_chinh;
+			}
+			set
+			{
+				if ((this._trang_thai_chinh != value))
+				{
+					this.Ontrang_thai_chinhChanging(value);
+					this.SendPropertyChanging();
+					this._trang_thai_chinh = value;
+					this.SendPropertyChanged("trang_thai_chinh");
+					this.Ontrang_thai_chinhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trang_thai_mo_rong", DbType="BigInt")]
+		public System.Nullable<long> trang_thai_mo_rong
+		{
+			get
+			{
+				return this._trang_thai_mo_rong;
+			}
+			set
+			{
+				if ((this._trang_thai_mo_rong != value))
+				{
+					this.Ontrang_thai_mo_rongChanging(value);
+					this.SendPropertyChanging();
+					this._trang_thai_mo_rong = value;
+					this.SendPropertyChanged("trang_thai_mo_rong");
+					this.Ontrang_thai_mo_rongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trang_thai_hopden", DbType="TinyInt")]
+		public System.Nullable<byte> trang_thai_hopden
+		{
+			get
+			{
+				return this._trang_thai_hopden;
+			}
+			set
+			{
+				if ((this._trang_thai_hopden != value))
+				{
+					this.Ontrang_thai_hopdenChanging(value);
+					this.SendPropertyChanging();
+					this._trang_thai_hopden = value;
+					this.SendPropertyChanged("trang_thai_hopden");
+					this.Ontrang_thai_hopdenChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mo_cua", DbType="Bit")]
+		public System.Nullable<bool> mo_cua
+		{
+			get
+			{
+				return this._mo_cua;
+			}
+			set
+			{
+				if ((this._mo_cua != value))
+				{
+					this.Onmo_cuaChanging(value);
+					this.SendPropertyChanging();
+					this._mo_cua = value;
+					this.SendPropertyChanged("mo_cua");
+					this.Onmo_cuaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dong_co", DbType="Bit")]
+		public System.Nullable<bool> dong_co
+		{
+			get
+			{
+				return this._dong_co;
+			}
+			set
+			{
+				if ((this._dong_co != value))
+				{
+					this.Ondong_coChanging(value);
+					this.SendPropertyChanging();
+					this._dong_co = value;
+					this.SendPropertyChanged("dong_co");
+					this.Ondong_coChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dieu_hoa", DbType="Bit")]
+		public System.Nullable<bool> dieu_hoa
+		{
+			get
+			{
+				return this._dieu_hoa;
+			}
+			set
+			{
+				if ((this._dieu_hoa != value))
+				{
+					this.Ondieu_hoaChanging(value);
+					this.SendPropertyChanging();
+					this._dieu_hoa = value;
+					this.SendPropertyChanged("dieu_hoa");
+					this.Ondieu_hoaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vuot_toc", DbType="TinyInt")]
+		public System.Nullable<byte> vuot_toc
+		{
+			get
+			{
+				return this._vuot_toc;
+			}
+			set
+			{
+				if ((this._vuot_toc != value))
+				{
+					this.Onvuot_tocChanging(value);
+					this.SendPropertyChanging();
+					this._vuot_toc = value;
+					this.SendPropertyChanged("vuot_toc");
+					this.Onvuot_tocChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_flash", DbType="Bit")]
+		public System.Nullable<bool> flash
+		{
+			get
+			{
+				return this._flash;
+			}
+			set
+			{
+				if ((this._flash != value))
+				{
+					this.OnflashChanging(value);
+					this.SendPropertyChanging();
+					this._flash = value;
+					this.SendPropertyChanged("flash");
+					this.OnflashChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sd_card", DbType="Bit")]
+		public System.Nullable<bool> sd_card
+		{
+			get
+			{
+				return this._sd_card;
+			}
+			set
+			{
+				if ((this._sd_card != value))
+				{
+					this.Onsd_cardChanging(value);
+					this.SendPropertyChanging();
+					this._sd_card = value;
+					this.SendPropertyChanged("sd_card");
+					this.Onsd_cardChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_muc_acquy", DbType="Int")]
+		public System.Nullable<int> muc_acquy
+		{
+			get
+			{
+				return this._muc_acquy;
+			}
+			set
+			{
+				if ((this._muc_acquy != value))
+				{
+					this.Onmuc_acquyChanging(value);
+					this.SendPropertyChanging();
+					this._muc_acquy = value;
+					this.SendPropertyChanged("muc_acquy");
+					this.Onmuc_acquyChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_muc_nhien_lieu", DbType="TinyInt")]
+		public System.Nullable<byte> muc_nhien_lieu
+		{
+			get
+			{
+				return this._muc_nhien_lieu;
+			}
+			set
+			{
+				if ((this._muc_nhien_lieu != value))
+				{
+					this.Onmuc_nhien_lieuChanging(value);
+					this.SendPropertyChanging();
+					this._muc_nhien_lieu = value;
+					this.SendPropertyChanged("muc_nhien_lieu");
+					this.Onmuc_nhien_lieuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_timeout", DbType="SmallInt")]
+		public System.Nullable<short> timeout
+		{
+			get
+			{
+				return this._timeout;
+			}
+			set
+			{
+				if ((this._timeout != value))
+				{
+					this.OntimeoutChanging(value);
+					this.SendPropertyChanging();
+					this._timeout = value;
+					this.SendPropertyChanged("timeout");
+					this.OntimeoutChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_van_toc_co", DbType="TinyInt")]
+		public System.Nullable<byte> van_toc_co
+		{
+			get
+			{
+				return this._van_toc_co;
+			}
+			set
+			{
+				if ((this._van_toc_co != value))
+				{
+					this.Onvan_toc_coChanging(value);
+					this.SendPropertyChanging();
+					this._van_toc_co = value;
+					this.SendPropertyChanged("van_toc_co");
+					this.Onvan_toc_coChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_van_toc_gps", DbType="TinyInt")]
+		public System.Nullable<byte> van_toc_gps
+		{
+			get
+			{
+				return this._van_toc_gps;
+			}
+			set
+			{
+				if ((this._van_toc_gps != value))
+				{
+					this.Onvan_toc_gpsChanging(value);
+					this.SendPropertyChanging();
+					this._van_toc_gps = value;
+					this.SendPropertyChanged("van_toc_gps");
+					this.Onvan_toc_gpsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_lai_xe", DbType="Int")]
+		public System.Nullable<int> id_lai_xe
+		{
+			get
+			{
+				return this._id_lai_xe;
+			}
+			set
+			{
+				if ((this._id_lai_xe != value))
+				{
+					this.Onid_lai_xeChanging(value);
+					this.SendPropertyChanging();
+					this._id_lai_xe = value;
+					this.SendPropertyChanged("id_lai_xe");
+					this.Onid_lai_xeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sim", DbType="VarChar(20)")]
+		public string sim
+		{
+			get
+			{
+				return this._sim;
+			}
+			set
+			{
+				if ((this._sim != value))
+				{
+					this.OnsimChanging(value);
+					this.SendPropertyChanging();
+					this._sim = value;
+					this.SendPropertyChanged("sim");
+					this.OnsimChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_thoi_diem", DbType="DateTime NOT NULL")]
+		public System.DateTime thoi_diem
+		{
+			get
+			{
+				return this._thoi_diem;
+			}
+			set
+			{
+				if ((this._thoi_diem != value))
+				{
+					this.Onthoi_diemChanging(value);
+					this.SendPropertyChanging();
+					this._thoi_diem = value;
+					this.SendPropertyChanged("thoi_diem");
+					this.Onthoi_diemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lai_xe_lien_tuc", DbType="Int")]
+		public System.Nullable<int> lai_xe_lien_tuc
+		{
+			get
+			{
+				return this._lai_xe_lien_tuc;
+			}
+			set
+			{
+				if ((this._lai_xe_lien_tuc != value))
+				{
+					this.Onlai_xe_lien_tucChanging(value);
+					this.SendPropertyChanging();
+					this._lai_xe_lien_tuc = value;
+					this.SendPropertyChanged("lai_xe_lien_tuc");
+					this.Onlai_xe_lien_tucChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lai_xe_trong_ngay", DbType="Int")]
+		public System.Nullable<int> lai_xe_trong_ngay
+		{
+			get
+			{
+				return this._lai_xe_trong_ngay;
+			}
+			set
+			{
+				if ((this._lai_xe_trong_ngay != value))
+				{
+					this.Onlai_xe_trong_ngayChanging(value);
+					this.SendPropertyChanging();
+					this._lai_xe_trong_ngay = value;
+					this.SendPropertyChanged("lai_xe_trong_ngay");
+					this.Onlai_xe_trong_ngayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quang_duong_lien_tuc", DbType="Float")]
+		public System.Nullable<double> quang_duong_lien_tuc
+		{
+			get
+			{
+				return this._quang_duong_lien_tuc;
+			}
+			set
+			{
+				if ((this._quang_duong_lien_tuc != value))
+				{
+					this.Onquang_duong_lien_tucChanging(value);
+					this.SendPropertyChanging();
+					this._quang_duong_lien_tuc = value;
+					this.SendPropertyChanged("quang_duong_lien_tuc");
+					this.Onquang_duong_lien_tucChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quang_duong_trong_ngay", DbType="Float")]
+		public System.Nullable<double> quang_duong_trong_ngay
+		{
+			get
+			{
+				return this._quang_duong_trong_ngay;
+			}
+			set
+			{
+				if ((this._quang_duong_trong_ngay != value))
+				{
+					this.Onquang_duong_trong_ngayChanging(value);
+					this.SendPropertyChanging();
+					this._quang_duong_trong_ngay = value;
+					this.SendPropertyChanged("quang_duong_trong_ngay");
+					this.Onquang_duong_trong_ngayChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lan_vuot_toc", DbType="Int")]
+		public System.Nullable<int> lan_vuot_toc
+		{
+			get
+			{
+				return this._lan_vuot_toc;
+			}
+			set
+			{
+				if ((this._lan_vuot_toc != value))
+				{
+					this.Onlan_vuot_tocChanging(value);
+					this.SendPropertyChanging();
+					this._lan_vuot_toc = value;
+					this.SendPropertyChanged("lan_vuot_toc");
+					this.Onlan_vuot_tocChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lan_mo_cua", DbType="Int")]
+		public System.Nullable<int> lan_mo_cua
+		{
+			get
+			{
+				return this._lan_mo_cua;
+			}
+			set
+			{
+				if ((this._lan_mo_cua != value))
+				{
+					this.Onlan_mo_cuaChanging(value);
+					this.SendPropertyChanging();
+					this._lan_mo_cua = value;
+					this.SendPropertyChanged("lan_mo_cua");
+					this.Onlan_mo_cuaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lan_do_xe", DbType="Int")]
+		public System.Nullable<int> lan_do_xe
+		{
+			get
+			{
+				return this._lan_do_xe;
+			}
+			set
+			{
+				if ((this._lan_do_xe != value))
+				{
+					this.Onlan_do_xeChanging(value);
+					this.SendPropertyChanging();
+					this._lan_do_xe = value;
+					this.SendPropertyChanged("lan_do_xe");
+					this.Onlan_do_xeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bonus_data", DbType="Binary(50)", UpdateCheck=UpdateCheck.Never)]
+		public System.Data.Linq.Binary bonus_data
+		{
+			get
+			{
+				return this._bonus_data;
+			}
+			set
+			{
+				if ((this._bonus_data != value))
+				{
+					this.Onbonus_dataChanging(value);
+					this.SendPropertyChanging();
+					this._bonus_data = value;
+					this.SendPropertyChanged("bonus_data");
+					this.Onbonus_dataChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lati", DbType="Float")]
+		public System.Nullable<double> lati
+		{
+			get
+			{
+				return this._lati;
+			}
+			set
+			{
+				if ((this._lati != value))
+				{
+					this.OnlatiChanging(value);
+					this.SendPropertyChanging();
+					this._lati = value;
+					this.SendPropertyChanged("lati");
+					this.OnlatiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_longi", DbType="Float")]
+		public System.Nullable<double> longi
+		{
+			get
+			{
+				return this._longi;
+			}
+			set
+			{
+				if ((this._longi != value))
+				{
+					this.OnlongiChanging(value);
+					this.SendPropertyChanging();
+					this._longi = value;
+					this.SendPropertyChanged("longi");
+					this.OnlongiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quang_duong_lien_tuc_gps", DbType="Float")]
+		public System.Nullable<double> quang_duong_lien_tuc_gps
+		{
+			get
+			{
+				return this._quang_duong_lien_tuc_gps;
+			}
+			set
+			{
+				if ((this._quang_duong_lien_tuc_gps != value))
+				{
+					this.Onquang_duong_lien_tuc_gpsChanging(value);
+					this.SendPropertyChanging();
+					this._quang_duong_lien_tuc_gps = value;
+					this.SendPropertyChanged("quang_duong_lien_tuc_gps");
+					this.Onquang_duong_lien_tuc_gpsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_quang_duong_trong_ngay_gps", DbType="Float")]
+		public System.Nullable<double> quang_duong_trong_ngay_gps
+		{
+			get
+			{
+				return this._quang_duong_trong_ngay_gps;
+			}
+			set
+			{
+				if ((this._quang_duong_trong_ngay_gps != value))
+				{
+					this.Onquang_duong_trong_ngay_gpsChanging(value);
+					this.SendPropertyChanging();
+					this._quang_duong_trong_ngay_gps = value;
+					this.SendPropertyChanged("quang_duong_trong_ngay_gps");
+					this.Onquang_duong_trong_ngay_gpsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_van_toc_tuc_thoi", DbType="NVarChar(MAX)")]
+		public string van_toc_tuc_thoi
+		{
+			get
+			{
+				return this._van_toc_tuc_thoi;
+			}
+			set
+			{
+				if ((this._van_toc_tuc_thoi != value))
+				{
+					this.Onvan_toc_tuc_thoiChanging(value);
+					this.SendPropertyChanging();
+					this._van_toc_tuc_thoi = value;
+					this.SendPropertyChanged("van_toc_tuc_thoi");
+					this.Onvan_toc_tuc_thoiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ENL", DbType="Int")]
+		public System.Nullable<int> ENL
+		{
+			get
+			{
+				return this._ENL;
+			}
+			set
+			{
+				if ((this._ENL != value))
+				{
+					this.OnENLChanging(value);
+					this.SendPropertyChanging();
+					this._ENL = value;
+					this.SendPropertyChanged("ENL");
+					this.OnENLChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_COT", DbType="Int")]
+		public System.Nullable<int> COT
+		{
+			get
+			{
+				return this._COT;
+			}
+			set
+			{
+				if ((this._COT != value))
+				{
+					this.OnCOTChanging(value);
+					this.SendPropertyChanging();
+					this._COT = value;
+					this.SendPropertyChanged("COT");
+					this.OnCOTChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RPM", DbType="Int")]
+		public System.Nullable<int> RPM
+		{
+			get
+			{
+				return this._RPM;
+			}
+			set
+			{
+				if ((this._RPM != value))
+				{
+					this.OnRPMChanging(value);
+					this.SendPropertyChanging();
+					this._RPM = value;
+					this.SendPropertyChanged("RPM");
+					this.OnRPMChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_INTemp", DbType="Int")]
+		public System.Nullable<int> INTemp
+		{
+			get
+			{
+				return this._INTemp;
+			}
+			set
+			{
+				if ((this._INTemp != value))
+				{
+					this.OnINTempChanging(value);
+					this.SendPropertyChanging();
+					this._INTemp = value;
+					this.SendPropertyChanged("INTemp");
+					this.OnINTempChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_DIS", DbType="Int")]
+		public System.Nullable<int> DIS
+		{
+			get
+			{
+				return this._DIS;
+			}
+			set
+			{
+				if ((this._DIS != value))
+				{
+					this.OnDISChanging(value);
+					this.SendPropertyChanging();
+					this._DIS = value;
+					this.SendPropertyChanged("DIS");
+					this.OnDISChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cam1_img_path", DbType="VarChar(256)")]
+		public string cam1_img_path
+		{
+			get
+			{
+				return this._cam1_img_path;
+			}
+			set
+			{
+				if ((this._cam1_img_path != value))
+				{
+					this.Oncam1_img_pathChanging(value);
+					this.SendPropertyChanging();
+					this._cam1_img_path = value;
+					this.SendPropertyChanged("cam1_img_path");
+					this.Oncam1_img_pathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cam2_img_path", DbType="VarChar(256)")]
+		public string cam2_img_path
+		{
+			get
+			{
+				return this._cam2_img_path;
+			}
+			set
+			{
+				if ((this._cam2_img_path != value))
+				{
+					this.Oncam2_img_pathChanging(value);
+					this.SendPropertyChanging();
+					this._cam2_img_path = value;
+					this.SendPropertyChanged("cam2_img_path");
+					this.Oncam2_img_pathChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RFIDString", DbType="VarChar(256)")]
+		public string RFIDString
+		{
+			get
+			{
+				return this._RFIDString;
+			}
+			set
+			{
+				if ((this._RFIDString != value))
+				{
+					this.OnRFIDStringChanging(value);
+					this.SendPropertyChanging();
+					this._RFIDString = value;
+					this.SendPropertyChanged("RFIDString");
+					this.OnRFIDStringChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_PRESS", DbType="Int")]
+		public System.Nullable<int> PRESS
+		{
+			get
+			{
+				return this._PRESS;
+			}
+			set
+			{
+				if ((this._PRESS != value))
+				{
+					this.OnPRESSChanging(value);
+					this.SendPropertyChanging();
+					this._PRESS = value;
+					this.SendPropertyChanged("PRESS");
+					this.OnPRESSChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_int_chuhang", DbType="Int")]
+		public System.Nullable<int> int_chuhang
+		{
+			get
+			{
+				return this._int_chuhang;
+			}
+			set
+			{
+				if ((this._int_chuhang != value))
+				{
+					this.Onint_chuhangChanging(value);
+					this.SendPropertyChanging();
+					this._int_chuhang = value;
+					this.SendPropertyChanged("int_chuhang");
+					this.Onint_chuhangChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_xe", DbType="Int NOT NULL")]
+		public int id_xe
+		{
+			get
+			{
+				return this._id_xe;
+			}
+			set
+			{
+				if ((this._id_xe != value))
+				{
+					this.Onid_xeChanging(value);
+					this.SendPropertyChanging();
+					this._id_xe = value;
+					this.SendPropertyChanged("id_xe");
+					this.Onid_xeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_vi_tri", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_vi_tri
+		{
+			get
+			{
+				return this._id_vi_tri;
+			}
+			set
+			{
+				if ((this._id_vi_tri != value))
+				{
+					this.Onid_vi_triChanging(value);
+					this.SendPropertyChanging();
+					this._id_vi_tri = value;
+					this.SendPropertyChanged("id_vi_tri");
+					this.Onid_vi_triChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_trang_thai_xe", DbType="TinyInt")]
+		public System.Nullable<byte> trang_thai_xe
+		{
+			get
+			{
+				return this._trang_thai_xe;
+			}
+			set
+			{
+				if ((this._trang_thai_xe != value))
+				{
+					this.Ontrang_thai_xeChanging(value);
+					this.SendPropertyChanging();
+					this._trang_thai_xe = value;
+					this.SendPropertyChanged("trang_thai_xe");
+					this.Ontrang_thai_xeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_duy_tri_trang_thai", DbType="SmallInt")]
+		public System.Nullable<short> duy_tri_trang_thai
+		{
+			get
+			{
+				return this._duy_tri_trang_thai;
+			}
+			set
+			{
+				if ((this._duy_tri_trang_thai != value))
+				{
+					this.Onduy_tri_trang_thaiChanging(value);
+					this.SendPropertyChanging();
+					this._duy_tri_trang_thai = value;
+					this.SendPropertyChanged("duy_tri_trang_thai");
+					this.Onduy_tri_trang_thaiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_standard_prt", DbType="VarChar(500)")]
+		public string last_standard_prt
+		{
+			get
+			{
+				return this._last_standard_prt;
+			}
+			set
+			{
+				if ((this._last_standard_prt != value))
+				{
+					this.Onlast_standard_prtChanging(value);
+					this.SendPropertyChanging();
+					this._last_standard_prt = value;
+					this.SendPropertyChanged("last_standard_prt");
+					this.Onlast_standard_prtChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_thoi_gian_lai_xe_all", DbType="Int")]
+		public System.Nullable<int> thoi_gian_lai_xe_all
+		{
+			get
+			{
+				return this._thoi_gian_lai_xe_all;
+			}
+			set
+			{
+				if ((this._thoi_gian_lai_xe_all != value))
+				{
+					this.Onthoi_gian_lai_xe_allChanging(value);
+					this.SendPropertyChanging();
+					this._thoi_gian_lai_xe_all = value;
+					this.SendPropertyChanged("thoi_gian_lai_xe_all");
+					this.Onthoi_gian_lai_xe_allChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_km_gps_all", DbType="Float")]
+		public System.Nullable<double> km_gps_all
+		{
+			get
+			{
+				return this._km_gps_all;
+			}
+			set
+			{
+				if ((this._km_gps_all != value))
+				{
+					this.Onkm_gps_allChanging(value);
+					this.SendPropertyChanging();
+					this._km_gps_all = value;
+					this.SendPropertyChanged("km_gps_all");
+					this.Onkm_gps_allChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_km_xung_all", DbType="Float")]
+		public System.Nullable<double> km_xung_all
+		{
+			get
+			{
+				return this._km_xung_all;
+			}
+			set
+			{
+				if ((this._km_xung_all != value))
+				{
+					this.Onkm_xung_allChanging(value);
+					this.SendPropertyChanging();
+					this._km_xung_all = value;
+					this.SendPropertyChanged("km_xung_all");
+					this.Onkm_xung_allChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dung_do_all", DbType="Int")]
+		public System.Nullable<int> dung_do_all
+		{
+			get
+			{
+				return this._dung_do_all;
+			}
+			set
+			{
+				if ((this._dung_do_all != value))
+				{
+					this.Ondung_do_allChanging(value);
+					this.SendPropertyChanging();
+					this._dung_do_all = value;
+					this.SendPropertyChanged("dung_do_all");
+					this.Ondung_do_allChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mo_cua_all", DbType="Int")]
+		public System.Nullable<int> mo_cua_all
+		{
+			get
+			{
+				return this._mo_cua_all;
+			}
+			set
+			{
+				if ((this._mo_cua_all != value))
+				{
+					this.Onmo_cua_allChanging(value);
+					this.SendPropertyChanging();
+					this._mo_cua_all = value;
+					this.SendPropertyChanged("mo_cua_all");
+					this.Onmo_cua_allChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vuot_toc_all", DbType="Int")]
+		public System.Nullable<int> vuot_toc_all
+		{
+			get
+			{
+				return this._vuot_toc_all;
+			}
+			set
+			{
+				if ((this._vuot_toc_all != value))
+				{
+					this.Onvuot_toc_allChanging(value);
+					this.SendPropertyChanging();
+					this._vuot_toc_all = value;
+					this.SendPropertyChanged("vuot_toc_all");
+					this.Onvuot_toc_allChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_time_upadate_router", DbType="DateTime")]
+		public System.Nullable<System.DateTime> last_time_upadate_router
+		{
+			get
+			{
+				return this._last_time_upadate_router;
+			}
+			set
+			{
+				if ((this._last_time_upadate_router != value))
+				{
+					this.Onlast_time_upadate_routerChanging(value);
+					this.SendPropertyChanging();
+					this._last_time_upadate_router = value;
+					this.SendPropertyChanged("last_time_upadate_router");
+					this.Onlast_time_upadate_routerChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_message_index", DbType="Int")]
+		public System.Nullable<int> message_index
+		{
+			get
+			{
+				return this._message_index;
+			}
+			set
+			{
+				if ((this._message_index != value))
+				{
+					this.Onmessage_indexChanging(value);
+					this.SendPropertyChanging();
+					this._message_index = value;
+					this.SendPropertyChanged("message_index");
+					this.Onmessage_indexChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_online", DbType="Bit")]
+		public System.Nullable<bool> online
+		{
+			get
+			{
+				return this._online;
+			}
+			set
+			{
+				if ((this._online != value))
+				{
+					this.OnonlineChanging(value);
+					this.SendPropertyChanging();
+					this._online = value;
+					this.SendPropertyChanged("online");
+					this.OnonlineChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_thoi_gian_dung_do_lien_tuc", DbType="Int")]
+		public System.Nullable<int> thoi_gian_dung_do_lien_tuc
+		{
+			get
+			{
+				return this._thoi_gian_dung_do_lien_tuc;
+			}
+			set
+			{
+				if ((this._thoi_gian_dung_do_lien_tuc != value))
+				{
+					this.Onthoi_gian_dung_do_lien_tucChanging(value);
+					this.SendPropertyChanging();
+					this._thoi_gian_dung_do_lien_tuc = value;
+					this.SendPropertyChanged("thoi_gian_dung_do_lien_tuc");
+					this.Onthoi_gian_dung_do_lien_tucChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_thoi_gian_di_chuyen_lien_tuc", DbType="Int")]
+		public System.Nullable<int> thoi_gian_di_chuyen_lien_tuc
+		{
+			get
+			{
+				return this._thoi_gian_di_chuyen_lien_tuc;
+			}
+			set
+			{
+				if ((this._thoi_gian_di_chuyen_lien_tuc != value))
+				{
+					this.Onthoi_gian_di_chuyen_lien_tucChanging(value);
+					this.SendPropertyChanging();
+					this._thoi_gian_di_chuyen_lien_tuc = value;
+					this.SendPropertyChanged("thoi_gian_di_chuyen_lien_tuc");
+					this.Onthoi_gian_di_chuyen_lien_tucChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_thoi_gian_mo_cua_lien_tuc", DbType="Int")]
+		public System.Nullable<int> thoi_gian_mo_cua_lien_tuc
+		{
+			get
+			{
+				return this._thoi_gian_mo_cua_lien_tuc;
+			}
+			set
+			{
+				if ((this._thoi_gian_mo_cua_lien_tuc != value))
+				{
+					this.Onthoi_gian_mo_cua_lien_tucChanging(value);
+					this.SendPropertyChanging();
+					this._thoi_gian_mo_cua_lien_tuc = value;
+					this.SendPropertyChanged("thoi_gian_mo_cua_lien_tuc");
+					this.Onthoi_gian_mo_cua_lien_tucChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_thoi_gian_vuot_toc_lien_tuc", DbType="Int")]
+		public System.Nullable<int> thoi_gian_vuot_toc_lien_tuc
+		{
+			get
+			{
+				return this._thoi_gian_vuot_toc_lien_tuc;
+			}
+			set
+			{
+				if ((this._thoi_gian_vuot_toc_lien_tuc != value))
+				{
+					this.Onthoi_gian_vuot_toc_lien_tucChanging(value);
+					this.SendPropertyChanging();
+					this._thoi_gian_vuot_toc_lien_tuc = value;
+					this.SendPropertyChanged("thoi_gian_vuot_toc_lien_tuc");
+					this.Onthoi_gian_vuot_toc_lien_tucChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_toc_do_tuc_thoi", DbType="VarChar(MAX)")]
+		public string toc_do_tuc_thoi
+		{
+			get
+			{
+				return this._toc_do_tuc_thoi;
+			}
+			set
+			{
+				if ((this._toc_do_tuc_thoi != value))
+				{
+					this.Ontoc_do_tuc_thoiChanging(value);
+					this.SendPropertyChanging();
+					this._toc_do_tuc_thoi = value;
+					this.SendPropertyChanged("toc_do_tuc_thoi");
+					this.Ontoc_do_tuc_thoiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cellid", DbType="Int")]
+		public System.Nullable<int> cellid
+		{
+			get
+			{
+				return this._cellid;
+			}
+			set
+			{
+				if ((this._cellid != value))
+				{
+					this.OncellidChanging(value);
+					this.SendPropertyChanging();
+					this._cellid = value;
+					this.SendPropertyChanged("cellid");
+					this.OncellidChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cellid_gpslat", DbType="Float")]
+		public System.Nullable<double> cellid_gpslat
+		{
+			get
+			{
+				return this._cellid_gpslat;
+			}
+			set
+			{
+				if ((this._cellid_gpslat != value))
+				{
+					this.Oncellid_gpslatChanging(value);
+					this.SendPropertyChanging();
+					this._cellid_gpslat = value;
+					this.SendPropertyChanged("cellid_gpslat");
+					this.Oncellid_gpslatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cellid_gpslon", DbType="Float")]
+		public System.Nullable<double> cellid_gpslon
+		{
+			get
+			{
+				return this._cellid_gpslon;
+			}
+			set
+			{
+				if ((this._cellid_gpslon != value))
+				{
+					this.Oncellid_gpslonChanging(value);
+					this.SendPropertyChanging();
+					this._cellid_gpslon = value;
+					this.SendPropertyChanged("cellid_gpslon");
+					this.Oncellid_gpslonChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_thoi_diem_nhan_tin", DbType="DateTime")]
+		public System.Nullable<System.DateTime> thoi_diem_nhan_tin
+		{
+			get
+			{
+				return this._thoi_diem_nhan_tin;
+			}
+			set
+			{
+				if ((this._thoi_diem_nhan_tin != value))
+				{
+					this.Onthoi_diem_nhan_tinChanging(value);
+					this.SendPropertyChanging();
+					this._thoi_diem_nhan_tin = value;
+					this.SendPropertyChanged("thoi_diem_nhan_tin");
+					this.Onthoi_diem_nhan_tinChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_phienban", DbType="VarChar(256)")]
+		public string phienban
+		{
+			get
+			{
+				return this._phienban;
+			}
+			set
+			{
+				if ((this._phienban != value))
+				{
+					this.OnphienbanChanging(value);
+					this.SendPropertyChanging();
+					this._phienban = value;
+					this.SendPropertyChanged("phienban");
+					this.OnphienbanChanged();
+				}
+			}
+		}
+		
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.device")]
+	public partial class device : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_thiet_bi;
+		
+		private string _ma_thiet_bi;
+		
+		private string _sim_card;
+		
+		private System.Nullable<int> _nha_mang;
+		
+		private System.Nullable<int> _loai_sim;
+		
+		private System.Nullable<int> _id_nguoi_dung;
+		
+		private System.Nullable<System.DateTime> _ngay_kich_hoat;
+		
+		private string _imei;
+		
+		private string _firmware_ver;
+		
+		private System.Nullable<int> _bootloader_ver;
+		
+		private bool _flag_login;
+		
+		private System.Nullable<bool> _update_config;
+		
+		private System.Nullable<bool> _send_message;
+		
+		private bool _active;
+		
+		private System.Nullable<double> _first_longi;
+		
+		private System.Nullable<double> _first_lati;
+		
+		private System.Nullable<System.DateTime> _ngay_het_han;
+		
+		private System.Nullable<System.DateTime> _ngay_thong_bao;
+		
+		private System.Nullable<bool> _thanh_toan;
+		
+		private System.Nullable<System.DateTime> _ngay_gia_han_moi;
+		
+		private System.Nullable<bool> _make_config_file;
+		
+		private System.Nullable<bool> _need_update;
+		
+		private System.Nullable<int> _id_donvi;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_thiet_biChanging(int value);
+    partial void Onid_thiet_biChanged();
+    partial void Onma_thiet_biChanging(string value);
+    partial void Onma_thiet_biChanged();
+    partial void Onsim_cardChanging(string value);
+    partial void Onsim_cardChanged();
+    partial void Onnha_mangChanging(System.Nullable<int> value);
+    partial void Onnha_mangChanged();
+    partial void Onloai_simChanging(System.Nullable<int> value);
+    partial void Onloai_simChanged();
+    partial void Onid_nguoi_dungChanging(System.Nullable<int> value);
+    partial void Onid_nguoi_dungChanged();
+    partial void Onngay_kich_hoatChanging(System.Nullable<System.DateTime> value);
+    partial void Onngay_kich_hoatChanged();
+    partial void OnimeiChanging(string value);
+    partial void OnimeiChanged();
+    partial void Onfirmware_verChanging(string value);
+    partial void Onfirmware_verChanged();
+    partial void Onbootloader_verChanging(System.Nullable<int> value);
+    partial void Onbootloader_verChanged();
+    partial void Onflag_loginChanging(bool value);
+    partial void Onflag_loginChanged();
+    partial void Onupdate_configChanging(System.Nullable<bool> value);
+    partial void Onupdate_configChanged();
+    partial void Onsend_messageChanging(System.Nullable<bool> value);
+    partial void Onsend_messageChanged();
+    partial void OnactiveChanging(bool value);
+    partial void OnactiveChanged();
+    partial void Onfirst_longiChanging(System.Nullable<double> value);
+    partial void Onfirst_longiChanged();
+    partial void Onfirst_latiChanging(System.Nullable<double> value);
+    partial void Onfirst_latiChanged();
+    partial void Onngay_het_hanChanging(System.Nullable<System.DateTime> value);
+    partial void Onngay_het_hanChanged();
+    partial void Onngay_thong_baoChanging(System.Nullable<System.DateTime> value);
+    partial void Onngay_thong_baoChanged();
+    partial void Onthanh_toanChanging(System.Nullable<bool> value);
+    partial void Onthanh_toanChanged();
+    partial void Onngay_gia_han_moiChanging(System.Nullable<System.DateTime> value);
+    partial void Onngay_gia_han_moiChanged();
+    partial void Onmake_config_fileChanging(System.Nullable<bool> value);
+    partial void Onmake_config_fileChanged();
+    partial void Onneed_updateChanging(System.Nullable<bool> value);
+    partial void Onneed_updateChanged();
+    partial void Onid_donviChanging(System.Nullable<int> value);
+    partial void Onid_donviChanged();
+    #endregion
+		
+		public device()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_thiet_bi", DbType="Int NOT NULL", IsPrimaryKey=true)]
+		public int id_thiet_bi
+		{
+			get
+			{
+				return this._id_thiet_bi;
+			}
+			set
+			{
+				if ((this._id_thiet_bi != value))
+				{
+					this.Onid_thiet_biChanging(value);
+					this.SendPropertyChanging();
+					this._id_thiet_bi = value;
+					this.SendPropertyChanged("id_thiet_bi");
+					this.Onid_thiet_biChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ma_thiet_bi", DbType="VarChar(50)")]
+		public string ma_thiet_bi
+		{
+			get
+			{
+				return this._ma_thiet_bi;
+			}
+			set
+			{
+				if ((this._ma_thiet_bi != value))
+				{
+					this.Onma_thiet_biChanging(value);
+					this.SendPropertyChanging();
+					this._ma_thiet_bi = value;
+					this.SendPropertyChanged("ma_thiet_bi");
+					this.Onma_thiet_biChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sim_card", DbType="VarChar(20)")]
+		public string sim_card
+		{
+			get
+			{
+				return this._sim_card;
+			}
+			set
+			{
+				if ((this._sim_card != value))
+				{
+					this.Onsim_cardChanging(value);
+					this.SendPropertyChanging();
+					this._sim_card = value;
+					this.SendPropertyChanged("sim_card");
+					this.Onsim_cardChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nha_mang", DbType="Int")]
+		public System.Nullable<int> nha_mang
+		{
+			get
+			{
+				return this._nha_mang;
+			}
+			set
+			{
+				if ((this._nha_mang != value))
+				{
+					this.Onnha_mangChanging(value);
+					this.SendPropertyChanging();
+					this._nha_mang = value;
+					this.SendPropertyChanged("nha_mang");
+					this.Onnha_mangChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_loai_sim", DbType="Int")]
+		public System.Nullable<int> loai_sim
+		{
+			get
+			{
+				return this._loai_sim;
+			}
+			set
+			{
+				if ((this._loai_sim != value))
+				{
+					this.Onloai_simChanging(value);
+					this.SendPropertyChanging();
+					this._loai_sim = value;
+					this.SendPropertyChanged("loai_sim");
+					this.Onloai_simChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_nguoi_dung", DbType="Int")]
+		public System.Nullable<int> id_nguoi_dung
+		{
+			get
+			{
+				return this._id_nguoi_dung;
+			}
+			set
+			{
+				if ((this._id_nguoi_dung != value))
+				{
+					this.Onid_nguoi_dungChanging(value);
+					this.SendPropertyChanging();
+					this._id_nguoi_dung = value;
+					this.SendPropertyChanged("id_nguoi_dung");
+					this.Onid_nguoi_dungChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngay_kich_hoat", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ngay_kich_hoat
+		{
+			get
+			{
+				return this._ngay_kich_hoat;
+			}
+			set
+			{
+				if ((this._ngay_kich_hoat != value))
+				{
+					this.Onngay_kich_hoatChanging(value);
+					this.SendPropertyChanging();
+					this._ngay_kich_hoat = value;
+					this.SendPropertyChanged("ngay_kich_hoat");
+					this.Onngay_kich_hoatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_imei", DbType="VarChar(100)")]
 		public string imei
 		{
 			get
@@ -636,322 +3140,1156 @@ namespace DataHandleWebService
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_receivedTime", DbType="NChar(25)")]
-		public string receivedTime
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_firmware_ver", DbType="VarChar(50)")]
+		public string firmware_ver
 		{
 			get
 			{
-				return this._receivedTime;
+				return this._firmware_ver;
 			}
 			set
 			{
-				if ((this._receivedTime != value))
+				if ((this._firmware_ver != value))
 				{
-					this.OnreceivedTimeChanging(value);
+					this.Onfirmware_verChanging(value);
 					this.SendPropertyChanging();
-					this._receivedTime = value;
-					this.SendPropertyChanged("receivedTime");
-					this.OnreceivedTimeChanged();
+					this._firmware_ver = value;
+					this.SendPropertyChanged("firmware_ver");
+					this.Onfirmware_verChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_longitude", DbType="NChar(10)")]
-		public string longitude
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bootloader_ver", DbType="Int")]
+		public System.Nullable<int> bootloader_ver
 		{
 			get
 			{
-				return this._longitude;
+				return this._bootloader_ver;
 			}
 			set
 			{
-				if ((this._longitude != value))
+				if ((this._bootloader_ver != value))
 				{
-					this.OnlongitudeChanging(value);
+					this.Onbootloader_verChanging(value);
 					this.SendPropertyChanging();
-					this._longitude = value;
-					this.SendPropertyChanged("longitude");
-					this.OnlongitudeChanged();
+					this._bootloader_ver = value;
+					this.SendPropertyChanged("bootloader_ver");
+					this.Onbootloader_verChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_latitude", DbType="NChar(10)")]
-		public string latitude
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_flag_login", DbType="Bit NOT NULL")]
+		public bool flag_login
 		{
 			get
 			{
-				return this._latitude;
+				return this._flag_login;
 			}
 			set
 			{
-				if ((this._latitude != value))
+				if ((this._flag_login != value))
 				{
-					this.OnlatitudeChanging(value);
+					this.Onflag_loginChanging(value);
 					this.SendPropertyChanging();
-					this._latitude = value;
-					this.SendPropertyChanged("latitude");
-					this.OnlatitudeChanged();
+					this._flag_login = value;
+					this.SendPropertyChanged("flag_login");
+					this.Onflag_loginChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_speed", DbType="NChar(10)")]
-		public string speed
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_update_config", DbType="Bit")]
+		public System.Nullable<bool> update_config
 		{
 			get
 			{
-				return this._speed;
+				return this._update_config;
 			}
 			set
 			{
-				if ((this._speed != value))
+				if ((this._update_config != value))
 				{
-					this.OnspeedChanging(value);
+					this.Onupdate_configChanging(value);
 					this.SendPropertyChanging();
-					this._speed = value;
-					this.SendPropertyChanged("speed");
-					this.OnspeedChanged();
+					this._update_config = value;
+					this.SendPropertyChanged("update_config");
+					this.Onupdate_configChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_mnc", DbType="NChar(10)")]
-		public string mnc
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_send_message", DbType="Bit")]
+		public System.Nullable<bool> send_message
 		{
 			get
 			{
-				return this._mnc;
+				return this._send_message;
 			}
 			set
 			{
-				if ((this._mnc != value))
+				if ((this._send_message != value))
 				{
-					this.OnmncChanging(value);
+					this.Onsend_messageChanging(value);
 					this.SendPropertyChanging();
-					this._mnc = value;
-					this.SendPropertyChanged("mnc");
-					this.OnmncChanged();
+					this._send_message = value;
+					this.SendPropertyChanged("send_message");
+					this.Onsend_messageChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lac", DbType="NChar(10)")]
-		public string lac
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_active", DbType="Bit NOT NULL")]
+		public bool active
 		{
 			get
 			{
-				return this._lac;
+				return this._active;
 			}
 			set
 			{
-				if ((this._lac != value))
+				if ((this._active != value))
 				{
-					this.OnlacChanging(value);
+					this.OnactiveChanging(value);
 					this.SendPropertyChanging();
-					this._lac = value;
-					this.SendPropertyChanged("lac");
-					this.OnlacChanged();
+					this._active = value;
+					this.SendPropertyChanged("active");
+					this.OnactiveChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_sos", DbType="NChar(10)")]
-		public string sos
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_first_longi", DbType="Float")]
+		public System.Nullable<double> first_longi
 		{
 			get
 			{
-				return this._sos;
+				return this._first_longi;
 			}
 			set
 			{
-				if ((this._sos != value))
+				if ((this._first_longi != value))
 				{
-					this.OnsosChanging(value);
+					this.Onfirst_longiChanging(value);
 					this.SendPropertyChanging();
-					this._sos = value;
-					this.SendPropertyChanged("sos");
-					this.OnsosChanged();
+					this._first_longi = value;
+					this.SendPropertyChanged("first_longi");
+					this.Onfirst_longiChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_strong_box_open", DbType="NChar(10)")]
-		public string strong_box_open
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_first_lati", DbType="Float")]
+		public System.Nullable<double> first_lati
 		{
 			get
 			{
-				return this._strong_box_open;
+				return this._first_lati;
 			}
 			set
 			{
-				if ((this._strong_box_open != value))
+				if ((this._first_lati != value))
 				{
-					this.Onstrong_box_openChanging(value);
+					this.Onfirst_latiChanging(value);
 					this.SendPropertyChanging();
-					this._strong_box_open = value;
-					this.SendPropertyChanged("strong_box_open");
-					this.Onstrong_box_openChanged();
+					this._first_lati = value;
+					this.SendPropertyChanged("first_lati");
+					this.Onfirst_latiChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_engine_on", DbType="NChar(10)")]
-		public string engine_on
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngay_het_han", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ngay_het_han
 		{
 			get
 			{
-				return this._engine_on;
+				return this._ngay_het_han;
 			}
 			set
 			{
-				if ((this._engine_on != value))
+				if ((this._ngay_het_han != value))
 				{
-					this.Onengine_onChanging(value);
+					this.Onngay_het_hanChanging(value);
 					this.SendPropertyChanging();
-					this._engine_on = value;
-					this.SendPropertyChanged("engine_on");
-					this.Onengine_onChanged();
+					this._ngay_het_han = value;
+					this.SendPropertyChanged("ngay_het_han");
+					this.Onngay_het_hanChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_stopping", DbType="NChar(10)")]
-		public string stopping
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngay_thong_bao", DbType="Date")]
+		public System.Nullable<System.DateTime> ngay_thong_bao
 		{
 			get
 			{
-				return this._stopping;
+				return this._ngay_thong_bao;
 			}
 			set
 			{
-				if ((this._stopping != value))
+				if ((this._ngay_thong_bao != value))
 				{
-					this.OnstoppingChanging(value);
+					this.Onngay_thong_baoChanging(value);
 					this.SendPropertyChanging();
-					this._stopping = value;
-					this.SendPropertyChanged("stopping");
-					this.OnstoppingChanged();
+					this._ngay_thong_bao = value;
+					this.SendPropertyChanged("ngay_thong_bao");
+					this.Onngay_thong_baoChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_gps_lost", DbType="NChar(10)")]
-		public string gps_lost
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_thanh_toan", DbType="Bit")]
+		public System.Nullable<bool> thanh_toan
 		{
 			get
 			{
-				return this._gps_lost;
+				return this._thanh_toan;
 			}
 			set
 			{
-				if ((this._gps_lost != value))
+				if ((this._thanh_toan != value))
 				{
-					this.Ongps_lostChanging(value);
+					this.Onthanh_toanChanging(value);
 					this.SendPropertyChanging();
-					this._gps_lost = value;
-					this.SendPropertyChanged("gps_lost");
-					this.Ongps_lostChanged();
+					this._thanh_toan = value;
+					this.SendPropertyChanged("thanh_toan");
+					this.Onthanh_toanChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image_cam1", DbType="NChar(10)")]
-		public string image_cam1
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngay_gia_han_moi", DbType="DateTime")]
+		public System.Nullable<System.DateTime> ngay_gia_han_moi
 		{
 			get
 			{
-				return this._image_cam1;
+				return this._ngay_gia_han_moi;
 			}
 			set
 			{
-				if ((this._image_cam1 != value))
+				if ((this._ngay_gia_han_moi != value))
 				{
-					this.Onimage_cam1Changing(value);
+					this.Onngay_gia_han_moiChanging(value);
 					this.SendPropertyChanging();
-					this._image_cam1 = value;
-					this.SendPropertyChanged("image_cam1");
-					this.Onimage_cam1Changed();
+					this._ngay_gia_han_moi = value;
+					this.SendPropertyChanged("ngay_gia_han_moi");
+					this.Onngay_gia_han_moiChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_image_cam2", DbType="NChar(10)")]
-		public string image_cam2
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_make_config_file", DbType="Bit")]
+		public System.Nullable<bool> make_config_file
 		{
 			get
 			{
-				return this._image_cam2;
+				return this._make_config_file;
 			}
 			set
 			{
-				if ((this._image_cam2 != value))
+				if ((this._make_config_file != value))
 				{
-					this.Onimage_cam2Changing(value);
+					this.Onmake_config_fileChanging(value);
 					this.SendPropertyChanging();
-					this._image_cam2 = value;
-					this.SendPropertyChanged("image_cam2");
-					this.Onimage_cam2Changed();
+					this._make_config_file = value;
+					this.SendPropertyChanged("make_config_file");
+					this.Onmake_config_fileChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rfid", DbType="Text", UpdateCheck=UpdateCheck.Never)]
-		public string rfid
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_need_update", DbType="Bit")]
+		public System.Nullable<bool> need_update
 		{
 			get
 			{
-				return this._rfid;
+				return this._need_update;
 			}
 			set
 			{
-				if ((this._rfid != value))
+				if ((this._need_update != value))
 				{
-					this.OnrfidChanging(value);
+					this.Onneed_updateChanging(value);
 					this.SendPropertyChanging();
-					this._rfid = value;
-					this.SendPropertyChanged("rfid");
-					this.OnrfidChanged();
+					this._need_update = value;
+					this.SendPropertyChanged("need_update");
+					this.Onneed_updateChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_obd", DbType="NChar(10)")]
-		public string obd
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_donvi", DbType="Int")]
+		public System.Nullable<int> id_donvi
 		{
 			get
 			{
-				return this._obd;
+				return this._id_donvi;
 			}
 			set
 			{
-				if ((this._obd != value))
+				if ((this._id_donvi != value))
 				{
-					this.OnobdChanging(value);
+					this.Onid_donviChanging(value);
 					this.SendPropertyChanging();
-					this._obd = value;
-					this.SendPropertyChanged("obd");
-					this.OnobdChanged();
+					this._id_donvi = value;
+					this.SendPropertyChanged("id_donvi");
+					this.Onid_donviChanged();
 				}
 			}
 		}
 		
-		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_version", DbType="NChar(20)")]
-		public string version
+		public event PropertyChangingEventHandler PropertyChanging;
+		
+		public event PropertyChangedEventHandler PropertyChanged;
+		
+		protected virtual void SendPropertyChanging()
+		{
+			if ((this.PropertyChanging != null))
+			{
+				this.PropertyChanging(this, emptyChangingEventArgs);
+			}
+		}
+		
+		protected virtual void SendPropertyChanged(String propertyName)
+		{
+			if ((this.PropertyChanged != null))
+			{
+				this.PropertyChanged(this, new PropertyChangedEventArgs(propertyName));
+			}
+		}
+	}
+	
+	[global::System.Data.Linq.Mapping.TableAttribute(Name="dbo.Car")]
+	public partial class Car : INotifyPropertyChanging, INotifyPropertyChanged
+	{
+		
+		private static PropertyChangingEventArgs emptyChangingEventArgs = new PropertyChangingEventArgs(String.Empty);
+		
+		private int _id_xe;
+		
+		private string _bien_kiem_soat;
+		
+		private string _vin_number;
+		
+		private System.Nullable<int> _id_thiet_bi;
+		
+		private System.Nullable<int> _id_loai_xe;
+		
+		private int _id_nhom_xe;
+		
+		private System.Nullable<int> _id_lai_xe_chinh;
+		
+		private System.Nullable<int> _loai_nhien_lieu;
+		
+		private System.Nullable<double> _dinh_muc_nhien_lieu;
+		
+		private System.Nullable<int> _id_don_vi_nhien_lieu;
+		
+		private System.Nullable<int> _van_toc_gioi_han;
+		
+		private System.Nullable<int> _rezo_speed_gps;
+		
+		private bool _nhom_xe_thong_tu;
+		
+		private System.Nullable<System.DateTime> _thoi_gian;
+		
+		private System.Nullable<System.DateTime> _last_time_driving;
+		
+		private System.Nullable<bool> _dang_ky_tong_cuc;
+		
+		private System.Nullable<int> _so_luong_camera;
+		
+		private string _loai_xe;
+		
+		private System.Nullable<int> _chuky_baoduong;
+		
+		private System.Nullable<System.DateTime> _lan_baoduong_cuoi;
+		
+		private System.Nullable<System.DateTime> _ngay_het_baohiem;
+		
+		private System.Nullable<System.DateTime> _ngay_mua_baohiem;
+		
+		private System.Nullable<System.DateTime> _ngay_thaydau;
+		
+		private string _noidung_baoduong;
+		
+		private string _noidung_thaydau;
+		
+		private string _ghichu;
+		
+		private System.Nullable<int> _cam1_rotate;
+		
+		private System.Nullable<int> _cam2_rotate;
+		
+		private System.Nullable<int> _cam_select;
+		
+		private System.Nullable<System.DateTime> _ngay_het_dangkiem;
+		
+		private System.Nullable<int> _RFID_id;
+		
+		private System.Nullable<System.DateTime> _ngay_suachua;
+		
+		private string _noidung_suachua;
+		
+		private System.Nullable<double> _giatri_suachua;
+		
+    #region Extensibility Method Definitions
+    partial void OnLoaded();
+    partial void OnValidate(System.Data.Linq.ChangeAction action);
+    partial void OnCreated();
+    partial void Onid_xeChanging(int value);
+    partial void Onid_xeChanged();
+    partial void Onbien_kiem_soatChanging(string value);
+    partial void Onbien_kiem_soatChanged();
+    partial void Onvin_numberChanging(string value);
+    partial void Onvin_numberChanged();
+    partial void Onid_thiet_biChanging(System.Nullable<int> value);
+    partial void Onid_thiet_biChanged();
+    partial void Onid_loai_xeChanging(System.Nullable<int> value);
+    partial void Onid_loai_xeChanged();
+    partial void Onid_nhom_xeChanging(int value);
+    partial void Onid_nhom_xeChanged();
+    partial void Onid_lai_xe_chinhChanging(System.Nullable<int> value);
+    partial void Onid_lai_xe_chinhChanged();
+    partial void Onloai_nhien_lieuChanging(System.Nullable<int> value);
+    partial void Onloai_nhien_lieuChanged();
+    partial void Ondinh_muc_nhien_lieuChanging(System.Nullable<double> value);
+    partial void Ondinh_muc_nhien_lieuChanged();
+    partial void Onid_don_vi_nhien_lieuChanging(System.Nullable<int> value);
+    partial void Onid_don_vi_nhien_lieuChanged();
+    partial void Onvan_toc_gioi_hanChanging(System.Nullable<int> value);
+    partial void Onvan_toc_gioi_hanChanged();
+    partial void Onrezo_speed_gpsChanging(System.Nullable<int> value);
+    partial void Onrezo_speed_gpsChanged();
+    partial void Onnhom_xe_thong_tuChanging(bool value);
+    partial void Onnhom_xe_thong_tuChanged();
+    partial void Onthoi_gianChanging(System.Nullable<System.DateTime> value);
+    partial void Onthoi_gianChanged();
+    partial void Onlast_time_drivingChanging(System.Nullable<System.DateTime> value);
+    partial void Onlast_time_drivingChanged();
+    partial void Ondang_ky_tong_cucChanging(System.Nullable<bool> value);
+    partial void Ondang_ky_tong_cucChanged();
+    partial void Onso_luong_cameraChanging(System.Nullable<int> value);
+    partial void Onso_luong_cameraChanged();
+    partial void Onloai_xeChanging(string value);
+    partial void Onloai_xeChanged();
+    partial void Onchuky_baoduongChanging(System.Nullable<int> value);
+    partial void Onchuky_baoduongChanged();
+    partial void Onlan_baoduong_cuoiChanging(System.Nullable<System.DateTime> value);
+    partial void Onlan_baoduong_cuoiChanged();
+    partial void Onngay_het_baohiemChanging(System.Nullable<System.DateTime> value);
+    partial void Onngay_het_baohiemChanged();
+    partial void Onngay_mua_baohiemChanging(System.Nullable<System.DateTime> value);
+    partial void Onngay_mua_baohiemChanged();
+    partial void Onngay_thaydauChanging(System.Nullable<System.DateTime> value);
+    partial void Onngay_thaydauChanged();
+    partial void Onnoidung_baoduongChanging(string value);
+    partial void Onnoidung_baoduongChanged();
+    partial void Onnoidung_thaydauChanging(string value);
+    partial void Onnoidung_thaydauChanged();
+    partial void OnghichuChanging(string value);
+    partial void OnghichuChanged();
+    partial void Oncam1_rotateChanging(System.Nullable<int> value);
+    partial void Oncam1_rotateChanged();
+    partial void Oncam2_rotateChanging(System.Nullable<int> value);
+    partial void Oncam2_rotateChanged();
+    partial void Oncam_selectChanging(System.Nullable<int> value);
+    partial void Oncam_selectChanged();
+    partial void Onngay_het_dangkiemChanging(System.Nullable<System.DateTime> value);
+    partial void Onngay_het_dangkiemChanged();
+    partial void OnRFID_idChanging(System.Nullable<int> value);
+    partial void OnRFID_idChanged();
+    partial void Onngay_suachuaChanging(System.Nullable<System.DateTime> value);
+    partial void Onngay_suachuaChanged();
+    partial void Onnoidung_suachuaChanging(string value);
+    partial void Onnoidung_suachuaChanged();
+    partial void Ongiatri_suachuaChanging(System.Nullable<double> value);
+    partial void Ongiatri_suachuaChanged();
+    #endregion
+		
+		public Car()
+		{
+			OnCreated();
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_xe", AutoSync=AutoSync.OnInsert, DbType="Int NOT NULL IDENTITY", IsPrimaryKey=true, IsDbGenerated=true)]
+		public int id_xe
 		{
 			get
 			{
-				return this._version;
+				return this._id_xe;
 			}
 			set
 			{
-				if ((this._version != value))
+				if ((this._id_xe != value))
 				{
-					this.OnversionChanging(value);
+					this.Onid_xeChanging(value);
 					this.SendPropertyChanging();
-					this._version = value;
-					this.SendPropertyChanged("version");
-					this.OnversionChanged();
+					this._id_xe = value;
+					this.SendPropertyChanged("id_xe");
+					this.Onid_xeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_bien_kiem_soat", DbType="VarChar(50)")]
+		public string bien_kiem_soat
+		{
+			get
+			{
+				return this._bien_kiem_soat;
+			}
+			set
+			{
+				if ((this._bien_kiem_soat != value))
+				{
+					this.Onbien_kiem_soatChanging(value);
+					this.SendPropertyChanging();
+					this._bien_kiem_soat = value;
+					this.SendPropertyChanged("bien_kiem_soat");
+					this.Onbien_kiem_soatChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_vin_number", DbType="NChar(100)")]
+		public string vin_number
+		{
+			get
+			{
+				return this._vin_number;
+			}
+			set
+			{
+				if ((this._vin_number != value))
+				{
+					this.Onvin_numberChanging(value);
+					this.SendPropertyChanging();
+					this._vin_number = value;
+					this.SendPropertyChanged("vin_number");
+					this.Onvin_numberChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_thiet_bi", DbType="Int")]
+		public System.Nullable<int> id_thiet_bi
+		{
+			get
+			{
+				return this._id_thiet_bi;
+			}
+			set
+			{
+				if ((this._id_thiet_bi != value))
+				{
+					this.Onid_thiet_biChanging(value);
+					this.SendPropertyChanging();
+					this._id_thiet_bi = value;
+					this.SendPropertyChanged("id_thiet_bi");
+					this.Onid_thiet_biChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_loai_xe", DbType="Int")]
+		public System.Nullable<int> id_loai_xe
+		{
+			get
+			{
+				return this._id_loai_xe;
+			}
+			set
+			{
+				if ((this._id_loai_xe != value))
+				{
+					this.Onid_loai_xeChanging(value);
+					this.SendPropertyChanging();
+					this._id_loai_xe = value;
+					this.SendPropertyChanged("id_loai_xe");
+					this.Onid_loai_xeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_nhom_xe", DbType="Int NOT NULL")]
+		public int id_nhom_xe
+		{
+			get
+			{
+				return this._id_nhom_xe;
+			}
+			set
+			{
+				if ((this._id_nhom_xe != value))
+				{
+					this.Onid_nhom_xeChanging(value);
+					this.SendPropertyChanging();
+					this._id_nhom_xe = value;
+					this.SendPropertyChanged("id_nhom_xe");
+					this.Onid_nhom_xeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_lai_xe_chinh", DbType="Int")]
+		public System.Nullable<int> id_lai_xe_chinh
+		{
+			get
+			{
+				return this._id_lai_xe_chinh;
+			}
+			set
+			{
+				if ((this._id_lai_xe_chinh != value))
+				{
+					this.Onid_lai_xe_chinhChanging(value);
+					this.SendPropertyChanging();
+					this._id_lai_xe_chinh = value;
+					this.SendPropertyChanged("id_lai_xe_chinh");
+					this.Onid_lai_xe_chinhChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_loai_nhien_lieu", DbType="Int")]
+		public System.Nullable<int> loai_nhien_lieu
+		{
+			get
+			{
+				return this._loai_nhien_lieu;
+			}
+			set
+			{
+				if ((this._loai_nhien_lieu != value))
+				{
+					this.Onloai_nhien_lieuChanging(value);
+					this.SendPropertyChanging();
+					this._loai_nhien_lieu = value;
+					this.SendPropertyChanged("loai_nhien_lieu");
+					this.Onloai_nhien_lieuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dinh_muc_nhien_lieu", DbType="Float")]
+		public System.Nullable<double> dinh_muc_nhien_lieu
+		{
+			get
+			{
+				return this._dinh_muc_nhien_lieu;
+			}
+			set
+			{
+				if ((this._dinh_muc_nhien_lieu != value))
+				{
+					this.Ondinh_muc_nhien_lieuChanging(value);
+					this.SendPropertyChanging();
+					this._dinh_muc_nhien_lieu = value;
+					this.SendPropertyChanged("dinh_muc_nhien_lieu");
+					this.Ondinh_muc_nhien_lieuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_id_don_vi_nhien_lieu", DbType="Int")]
+		public System.Nullable<int> id_don_vi_nhien_lieu
+		{
+			get
+			{
+				return this._id_don_vi_nhien_lieu;
+			}
+			set
+			{
+				if ((this._id_don_vi_nhien_lieu != value))
+				{
+					this.Onid_don_vi_nhien_lieuChanging(value);
+					this.SendPropertyChanging();
+					this._id_don_vi_nhien_lieu = value;
+					this.SendPropertyChanged("id_don_vi_nhien_lieu");
+					this.Onid_don_vi_nhien_lieuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_van_toc_gioi_han", DbType="Int")]
+		public System.Nullable<int> van_toc_gioi_han
+		{
+			get
+			{
+				return this._van_toc_gioi_han;
+			}
+			set
+			{
+				if ((this._van_toc_gioi_han != value))
+				{
+					this.Onvan_toc_gioi_hanChanging(value);
+					this.SendPropertyChanging();
+					this._van_toc_gioi_han = value;
+					this.SendPropertyChanged("van_toc_gioi_han");
+					this.Onvan_toc_gioi_hanChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_rezo_speed_gps", DbType="Int")]
+		public System.Nullable<int> rezo_speed_gps
+		{
+			get
+			{
+				return this._rezo_speed_gps;
+			}
+			set
+			{
+				if ((this._rezo_speed_gps != value))
+				{
+					this.Onrezo_speed_gpsChanging(value);
+					this.SendPropertyChanging();
+					this._rezo_speed_gps = value;
+					this.SendPropertyChanged("rezo_speed_gps");
+					this.Onrezo_speed_gpsChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_nhom_xe_thong_tu", DbType="Bit NOT NULL")]
+		public bool nhom_xe_thong_tu
+		{
+			get
+			{
+				return this._nhom_xe_thong_tu;
+			}
+			set
+			{
+				if ((this._nhom_xe_thong_tu != value))
+				{
+					this.Onnhom_xe_thong_tuChanging(value);
+					this.SendPropertyChanging();
+					this._nhom_xe_thong_tu = value;
+					this.SendPropertyChanged("nhom_xe_thong_tu");
+					this.Onnhom_xe_thong_tuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_thoi_gian", DbType="DateTime")]
+		public System.Nullable<System.DateTime> thoi_gian
+		{
+			get
+			{
+				return this._thoi_gian;
+			}
+			set
+			{
+				if ((this._thoi_gian != value))
+				{
+					this.Onthoi_gianChanging(value);
+					this.SendPropertyChanging();
+					this._thoi_gian = value;
+					this.SendPropertyChanged("thoi_gian");
+					this.Onthoi_gianChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_last_time_driving", DbType="DateTime")]
+		public System.Nullable<System.DateTime> last_time_driving
+		{
+			get
+			{
+				return this._last_time_driving;
+			}
+			set
+			{
+				if ((this._last_time_driving != value))
+				{
+					this.Onlast_time_drivingChanging(value);
+					this.SendPropertyChanging();
+					this._last_time_driving = value;
+					this.SendPropertyChanged("last_time_driving");
+					this.Onlast_time_drivingChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_dang_ky_tong_cuc", DbType="Bit")]
+		public System.Nullable<bool> dang_ky_tong_cuc
+		{
+			get
+			{
+				return this._dang_ky_tong_cuc;
+			}
+			set
+			{
+				if ((this._dang_ky_tong_cuc != value))
+				{
+					this.Ondang_ky_tong_cucChanging(value);
+					this.SendPropertyChanging();
+					this._dang_ky_tong_cuc = value;
+					this.SendPropertyChanged("dang_ky_tong_cuc");
+					this.Ondang_ky_tong_cucChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_so_luong_camera", DbType="Int")]
+		public System.Nullable<int> so_luong_camera
+		{
+			get
+			{
+				return this._so_luong_camera;
+			}
+			set
+			{
+				if ((this._so_luong_camera != value))
+				{
+					this.Onso_luong_cameraChanging(value);
+					this.SendPropertyChanging();
+					this._so_luong_camera = value;
+					this.SendPropertyChanged("so_luong_camera");
+					this.Onso_luong_cameraChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_loai_xe", DbType="NVarChar(50)")]
+		public string loai_xe
+		{
+			get
+			{
+				return this._loai_xe;
+			}
+			set
+			{
+				if ((this._loai_xe != value))
+				{
+					this.Onloai_xeChanging(value);
+					this.SendPropertyChanging();
+					this._loai_xe = value;
+					this.SendPropertyChanged("loai_xe");
+					this.Onloai_xeChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_chuky_baoduong", DbType="Int")]
+		public System.Nullable<int> chuky_baoduong
+		{
+			get
+			{
+				return this._chuky_baoduong;
+			}
+			set
+			{
+				if ((this._chuky_baoduong != value))
+				{
+					this.Onchuky_baoduongChanging(value);
+					this.SendPropertyChanging();
+					this._chuky_baoduong = value;
+					this.SendPropertyChanged("chuky_baoduong");
+					this.Onchuky_baoduongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_lan_baoduong_cuoi", DbType="Date")]
+		public System.Nullable<System.DateTime> lan_baoduong_cuoi
+		{
+			get
+			{
+				return this._lan_baoduong_cuoi;
+			}
+			set
+			{
+				if ((this._lan_baoduong_cuoi != value))
+				{
+					this.Onlan_baoduong_cuoiChanging(value);
+					this.SendPropertyChanging();
+					this._lan_baoduong_cuoi = value;
+					this.SendPropertyChanged("lan_baoduong_cuoi");
+					this.Onlan_baoduong_cuoiChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngay_het_baohiem", DbType="Date")]
+		public System.Nullable<System.DateTime> ngay_het_baohiem
+		{
+			get
+			{
+				return this._ngay_het_baohiem;
+			}
+			set
+			{
+				if ((this._ngay_het_baohiem != value))
+				{
+					this.Onngay_het_baohiemChanging(value);
+					this.SendPropertyChanging();
+					this._ngay_het_baohiem = value;
+					this.SendPropertyChanged("ngay_het_baohiem");
+					this.Onngay_het_baohiemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngay_mua_baohiem", DbType="Date")]
+		public System.Nullable<System.DateTime> ngay_mua_baohiem
+		{
+			get
+			{
+				return this._ngay_mua_baohiem;
+			}
+			set
+			{
+				if ((this._ngay_mua_baohiem != value))
+				{
+					this.Onngay_mua_baohiemChanging(value);
+					this.SendPropertyChanging();
+					this._ngay_mua_baohiem = value;
+					this.SendPropertyChanged("ngay_mua_baohiem");
+					this.Onngay_mua_baohiemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngay_thaydau", DbType="Date")]
+		public System.Nullable<System.DateTime> ngay_thaydau
+		{
+			get
+			{
+				return this._ngay_thaydau;
+			}
+			set
+			{
+				if ((this._ngay_thaydau != value))
+				{
+					this.Onngay_thaydauChanging(value);
+					this.SendPropertyChanging();
+					this._ngay_thaydau = value;
+					this.SendPropertyChanged("ngay_thaydau");
+					this.Onngay_thaydauChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_noidung_baoduong", DbType="NVarChar(512)")]
+		public string noidung_baoduong
+		{
+			get
+			{
+				return this._noidung_baoduong;
+			}
+			set
+			{
+				if ((this._noidung_baoduong != value))
+				{
+					this.Onnoidung_baoduongChanging(value);
+					this.SendPropertyChanging();
+					this._noidung_baoduong = value;
+					this.SendPropertyChanged("noidung_baoduong");
+					this.Onnoidung_baoduongChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_noidung_thaydau", DbType="NVarChar(512)")]
+		public string noidung_thaydau
+		{
+			get
+			{
+				return this._noidung_thaydau;
+			}
+			set
+			{
+				if ((this._noidung_thaydau != value))
+				{
+					this.Onnoidung_thaydauChanging(value);
+					this.SendPropertyChanging();
+					this._noidung_thaydau = value;
+					this.SendPropertyChanged("noidung_thaydau");
+					this.Onnoidung_thaydauChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ghichu", DbType="NVarChar(512)")]
+		public string ghichu
+		{
+			get
+			{
+				return this._ghichu;
+			}
+			set
+			{
+				if ((this._ghichu != value))
+				{
+					this.OnghichuChanging(value);
+					this.SendPropertyChanging();
+					this._ghichu = value;
+					this.SendPropertyChanged("ghichu");
+					this.OnghichuChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cam1_rotate", DbType="Int")]
+		public System.Nullable<int> cam1_rotate
+		{
+			get
+			{
+				return this._cam1_rotate;
+			}
+			set
+			{
+				if ((this._cam1_rotate != value))
+				{
+					this.Oncam1_rotateChanging(value);
+					this.SendPropertyChanging();
+					this._cam1_rotate = value;
+					this.SendPropertyChanged("cam1_rotate");
+					this.Oncam1_rotateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cam2_rotate", DbType="Int")]
+		public System.Nullable<int> cam2_rotate
+		{
+			get
+			{
+				return this._cam2_rotate;
+			}
+			set
+			{
+				if ((this._cam2_rotate != value))
+				{
+					this.Oncam2_rotateChanging(value);
+					this.SendPropertyChanging();
+					this._cam2_rotate = value;
+					this.SendPropertyChanged("cam2_rotate");
+					this.Oncam2_rotateChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_cam_select", DbType="Int")]
+		public System.Nullable<int> cam_select
+		{
+			get
+			{
+				return this._cam_select;
+			}
+			set
+			{
+				if ((this._cam_select != value))
+				{
+					this.Oncam_selectChanging(value);
+					this.SendPropertyChanging();
+					this._cam_select = value;
+					this.SendPropertyChanged("cam_select");
+					this.Oncam_selectChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngay_het_dangkiem", DbType="Date")]
+		public System.Nullable<System.DateTime> ngay_het_dangkiem
+		{
+			get
+			{
+				return this._ngay_het_dangkiem;
+			}
+			set
+			{
+				if ((this._ngay_het_dangkiem != value))
+				{
+					this.Onngay_het_dangkiemChanging(value);
+					this.SendPropertyChanging();
+					this._ngay_het_dangkiem = value;
+					this.SendPropertyChanged("ngay_het_dangkiem");
+					this.Onngay_het_dangkiemChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_RFID_id", DbType="Int")]
+		public System.Nullable<int> RFID_id
+		{
+			get
+			{
+				return this._RFID_id;
+			}
+			set
+			{
+				if ((this._RFID_id != value))
+				{
+					this.OnRFID_idChanging(value);
+					this.SendPropertyChanging();
+					this._RFID_id = value;
+					this.SendPropertyChanged("RFID_id");
+					this.OnRFID_idChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_ngay_suachua", DbType="Date")]
+		public System.Nullable<System.DateTime> ngay_suachua
+		{
+			get
+			{
+				return this._ngay_suachua;
+			}
+			set
+			{
+				if ((this._ngay_suachua != value))
+				{
+					this.Onngay_suachuaChanging(value);
+					this.SendPropertyChanging();
+					this._ngay_suachua = value;
+					this.SendPropertyChanged("ngay_suachua");
+					this.Onngay_suachuaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_noidung_suachua", DbType="NVarChar(512)")]
+		public string noidung_suachua
+		{
+			get
+			{
+				return this._noidung_suachua;
+			}
+			set
+			{
+				if ((this._noidung_suachua != value))
+				{
+					this.Onnoidung_suachuaChanging(value);
+					this.SendPropertyChanging();
+					this._noidung_suachua = value;
+					this.SendPropertyChanged("noidung_suachua");
+					this.Onnoidung_suachuaChanged();
+				}
+			}
+		}
+		
+		[global::System.Data.Linq.Mapping.ColumnAttribute(Storage="_giatri_suachua", DbType="Float")]
+		public System.Nullable<double> giatri_suachua
+		{
+			get
+			{
+				return this._giatri_suachua;
+			}
+			set
+			{
+				if ((this._giatri_suachua != value))
+				{
+					this.Ongiatri_suachuaChanging(value);
+					this.SendPropertyChanging();
+					this._giatri_suachua = value;
+					this.SendPropertyChanged("giatri_suachua");
+					this.Ongiatri_suachuaChanged();
 				}
 			}
 		}

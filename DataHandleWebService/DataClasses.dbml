@@ -1,45 +1,188 @@
 ﻿<?xml version="1.0" encoding="utf-8"?><Database Name="test_device_db" Class="DataClassesDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
   <Connection Mode="WebSettings" ConnectionString="Data Source=ADMIN\SQLEXPRESS;Initial Catalog=test_device_db;Integrated Security=True" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="test_device_dbConnectionString" Provider="System.Data.SqlClient" />
-  <Table Name="dbo.online_record" Member="online_records">
-    <Type Name="online_record">
-      <Column Name="imei" Type="System.String" DbType="NChar(25) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="receivedTime" Type="System.String" DbType="NChar(25)" CanBeNull="true" />
-      <Column Name="longitude" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="latitude" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="speed" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="mnc" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="lac" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="sos" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="strong_box_open" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="engine_on" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="stopping" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="gps_lost" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="image_cam1" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="image_cam2" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="rfid" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="obd" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="version" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
-    </Type>
-  </Table>
   <Table Name="dbo.history_record" Member="history_records">
     <Type Name="history_record">
-      <Column Name="imei" Type="System.String" DbType="NChar(20) NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
-      <Column Name="receivedTime" Type="System.String" DbType="NChar(25)" CanBeNull="true" />
-      <Column Name="longitude" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="latitude" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="speed" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="mnc" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="lac" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="sos" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="strong_box_open" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="engine_on" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="stopping" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="gps_lost" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="image_cam1" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="image_cam2" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="rfid" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
-      <Column Name="obd" Type="System.String" DbType="NChar(10)" CanBeNull="true" />
-      <Column Name="version" Type="System.String" DbType="NChar(20)" CanBeNull="true" />
+      <Column Name="lac" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sos" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="trang_thai_chinh" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="trang_thai_mo_rong" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="trang_thai_hopden" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="mo_cua" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="dong_co" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="dieu_hoa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="vuot_toc" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="flash" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="sd_card" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="muc_acquy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="muc_nhien_lieu" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="timeout" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="van_toc_co" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="van_toc_gps" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="id_lai_xe" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sim" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="thoi_diem" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="lai_xe_lien_tuc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lai_xe_trong_ngay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="quang_duong_lien_tuc" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="quang_duong_trong_ngay" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="lan_vuot_toc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lan_mo_cua" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lan_do_xe" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bonus_data" Type="System.Data.Linq.Binary" DbType="Binary(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="lati" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="quang_duong_lien_tuc_gps" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="quang_duong_trong_ngay_gps" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="van_toc_tuc_thoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ENL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RPM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="INTemp" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DIS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cam1_img_path" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="cam2_img_path" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="RFIDString" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="PRESS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="int_chuhang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_vi_tri" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="id_xe" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="trang_thai_xe" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="cellid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.online_record" Member="online_records">
+    <Type Name="online_record">
+      <Column Name="lac" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sos" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="trang_thai_chinh" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="trang_thai_mo_rong" Type="System.Int64" DbType="BigInt" CanBeNull="true" />
+      <Column Name="trang_thai_hopden" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="mo_cua" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="dong_co" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="dieu_hoa" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="vuot_toc" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="flash" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="sd_card" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="muc_acquy" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="muc_nhien_lieu" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="timeout" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="van_toc_co" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="van_toc_gps" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="id_lai_xe" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="sim" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="thoi_diem" Type="System.DateTime" DbType="DateTime NOT NULL" CanBeNull="false" />
+      <Column Name="lai_xe_lien_tuc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lai_xe_trong_ngay" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="quang_duong_lien_tuc" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="quang_duong_trong_ngay" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="lan_vuot_toc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lan_mo_cua" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lan_do_xe" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="bonus_data" Type="System.Data.Linq.Binary" DbType="Binary(50)" CanBeNull="true" UpdateCheck="Never" />
+      <Column Name="lati" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="quang_duong_lien_tuc_gps" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="quang_duong_trong_ngay_gps" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="van_toc_tuc_thoi" Type="System.String" DbType="NVarChar(MAX)" CanBeNull="true" />
+      <Column Name="ENL" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="COT" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="RPM" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="INTemp" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="DIS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cam1_img_path" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="cam2_img_path" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="RFIDString" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+      <Column Name="PRESS" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="int_chuhang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_xe" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_vi_tri" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="trang_thai_xe" Type="System.Byte" DbType="TinyInt" CanBeNull="true" />
+      <Column Name="duy_tri_trang_thai" Type="System.Int16" DbType="SmallInt" CanBeNull="true" />
+      <Column Name="last_standard_prt" Type="System.String" DbType="VarChar(500)" CanBeNull="true" />
+      <Column Name="thoi_gian_lai_xe_all" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="km_gps_all" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="km_xung_all" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="dung_do_all" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="mo_cua_all" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="vuot_toc_all" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="last_time_upadate_router" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="message_index" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="online" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="thoi_gian_dung_do_lien_tuc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thoi_gian_di_chuyen_lien_tuc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thoi_gian_mo_cua_lien_tuc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="thoi_gian_vuot_toc_lien_tuc" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="toc_do_tuc_thoi" Type="System.String" DbType="VarChar(MAX)" CanBeNull="true" />
+      <Column Name="cellid" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cellid_gpslat" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="cellid_gpslon" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="thoi_diem_nhan_tin" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="phienban" Type="System.String" DbType="VarChar(256)" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.device" Member="devices">
+    <Type Name="device">
+      <Column Name="id_thiet_bi" Type="System.Int32" DbType="Int NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="ma_thiet_bi" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="sim_card" Type="System.String" DbType="VarChar(20)" CanBeNull="true" />
+      <Column Name="nha_mang" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="loai_sim" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_nguoi_dung" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ngay_kich_hoat" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="imei" Type="System.String" DbType="VarChar(100)" CanBeNull="true" />
+      <Column Name="firmware_ver" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="bootloader_ver" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="flag_login" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="update_config" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="send_message" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="active" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="first_longi" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="first_lati" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="ngay_het_han" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="ngay_thong_bao" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="thanh_toan" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="ngay_gia_han_moi" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="make_config_file" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="need_update" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="id_donvi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+    </Type>
+  </Table>
+  <Table Name="dbo.Car" Member="Cars">
+    <Type Name="Car">
+      <Column Name="id_xe" Type="System.Int32" DbType="Int NOT NULL IDENTITY" IsPrimaryKey="true" IsDbGenerated="true" CanBeNull="false" />
+      <Column Name="bien_kiem_soat" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="vin_number" Type="System.String" DbType="NChar(100)" CanBeNull="true" />
+      <Column Name="id_thiet_bi" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_loai_xe" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="id_nhom_xe" Type="System.Int32" DbType="Int NOT NULL" CanBeNull="false" />
+      <Column Name="id_lai_xe_chinh" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="loai_nhien_lieu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="dinh_muc_nhien_lieu" Type="System.Double" DbType="Float" CanBeNull="true" />
+      <Column Name="id_don_vi_nhien_lieu" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="van_toc_gioi_han" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="rezo_speed_gps" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="nhom_xe_thong_tu" Type="System.Boolean" DbType="Bit NOT NULL" CanBeNull="false" />
+      <Column Name="thoi_gian" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="last_time_driving" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="dang_ky_tong_cuc" Type="System.Boolean" DbType="Bit" CanBeNull="true" />
+      <Column Name="so_luong_camera" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="loai_xe" Type="System.String" DbType="NVarChar(50)" CanBeNull="true" />
+      <Column Name="chuky_baoduong" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="lan_baoduong_cuoi" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ngay_het_baohiem" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ngay_mua_baohiem" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="ngay_thaydau" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="noidung_baoduong" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="noidung_thaydau" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="ghichu" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="cam1_rotate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cam2_rotate" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="cam_select" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ngay_het_dangkiem" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="RFID_id" Type="System.Int32" DbType="Int" CanBeNull="true" />
+      <Column Name="ngay_suachua" Type="System.DateTime" DbType="Date" CanBeNull="true" />
+      <Column Name="noidung_suachua" Type="System.String" DbType="NVarChar(512)" CanBeNull="true" />
+      <Column Name="giatri_suachua" Type="System.Double" DbType="Float" CanBeNull="true" />
     </Type>
   </Table>
 </Database>
